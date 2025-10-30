@@ -43,9 +43,15 @@ a:focus {
 }
 
 .header.header-6 .navbar-area {
-  background: rgba(8, 15, 30, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--dark-border);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-section-wrapper-5 {
@@ -55,9 +61,11 @@ a:focus {
 }
 
 .hero-section-wrapper-5 .header.sticky {
-  background: rgba(8, 15, 30, 0.95);
-  box-shadow: 0 15px 40px rgba(2, 6, 23, 0.6);
-  border-bottom: 1px solid var(--dark-border-strong);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .hero-section-wrapper-5 .navbar-nav .nav-item a {
