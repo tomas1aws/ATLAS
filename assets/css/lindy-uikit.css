@@ -732,10 +732,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../img/hero/hero-5/backg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -743,14 +740,32 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background-image: url("../img/hero/hero-5/backg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.85) contrast(0.95);
+  opacity: 0.9;
   pointer-events: none;
   z-index: 0;
 }
 
+.hero-section-wrapper-5 .hero-style-5::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.75) 100%),
+    radial-gradient(circle at 25% 20%, rgba(191, 140, 64, 0.25), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(128, 34, 28, 0.22), transparent 60%),
+    radial-gradient(circle at 20% 82%, rgba(110, 46, 24, 0.18), transparent 55%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-section-wrapper-5 .hero-style-5 > .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   display: flex;
   align-items: center;
