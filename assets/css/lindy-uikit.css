@@ -632,8 +632,39 @@ p {
     HERO-5 CSS
 ================================ */
 .hero-section-wrapper-5 {
-  background: #ffffff;
+  background: radial-gradient(circle at 30% 20%, rgba(88, 76, 255, 0.25), transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(255, 0, 200, 0.2), transparent 60%),
+    #0b0c10;
   position: relative;
+  overflow: hidden;
+}
+
+.hero-section-wrapper-5 .hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section-wrapper-5 .hero-section::before,
+.hero-section-wrapper-5 .hero-section::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  pointer-events: none;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.hero-section-wrapper-5 .hero-section::before {
+  top: -120px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.1), transparent 70%);
+}
+
+.hero-section-wrapper-5 .hero-section::after {
+  bottom: -150px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(0, 150, 255, 0.15), transparent 70%);
 }
 
 .hero-section-wrapper-5 .header {
@@ -643,6 +674,44 @@ p {
   left: 0;
   z-index: 2;
   background: transparent;
+}
+
+.hero-section-wrapper-5 .header .navbar-nav .nav-item a,
+.hero-section-wrapper-5 .header .header-action a {
+  color: rgba(230, 234, 255, 0.85);
+}
+
+.hero-section-wrapper-5 .header .navbar-nav .nav-item a:hover,
+.hero-section-wrapper-5 .header .navbar-nav .nav-item a.active {
+  color: #8ab4ff;
+  border-color: rgba(138, 180, 255, 0.4);
+}
+
+.hero-section-wrapper-5 .header .header-action a:hover {
+  color: #ffffff;
+}
+
+.hero-section-wrapper-5 .header .navbar-toggler .toggler-icon {
+  background-color: rgba(230, 234, 255, 0.8);
+}
+
+.hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a,
+.hero-section-wrapper-5 .header.sticky .header-action a {
+  color: #585978;
+}
+
+.hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a:hover,
+.hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a.active {
+  color: #2F80ED;
+  border-color: #2F80ED;
+}
+
+.hero-section-wrapper-5 .header.sticky .header-action a:hover {
+  color: #2F80ED;
+}
+
+.hero-section-wrapper-5 .header.sticky .navbar-toggler .toggler-icon {
+  background-color: #323450;
 }
 
 .hero-section-wrapper-5 .header.sticky {
@@ -659,6 +728,17 @@ p {
   position: relative;
   z-index: 1;
   padding: 270px 0 140px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 0 0 120px 120px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: screen;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -687,6 +767,8 @@ p {
 
 .hero-section-wrapper-5 .hero-style-5 .hero-content-wrapper {
   padding: 100px 0;
+  position: relative;
+  z-index: 2;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -703,6 +785,11 @@ p {
 
 .hero-section-wrapper-5 .hero-style-5 .hero-content-wrapper h2 {
   margin-bottom: 30px;
+  color: #f5f6ff;
+}
+
+.hero-section-wrapper-5 .hero-style-5 .hero-content-wrapper p {
+  color: rgba(232, 235, 255, 0.85);
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -736,6 +823,7 @@ p {
 @media only screen and (min-width: 1400px) {
   .hero-section-wrapper-5 .hero-style-5 .hero-content-wrapper p {
     padding-right: 100px;
+    color: rgba(232, 235, 255, 0.85);
   }
 }
 
@@ -760,10 +848,16 @@ p {
 .hero-section-wrapper-5 .hero-style-5 .hero-image {
   margin-bottom: 100px;
   position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .hero-section-wrapper-5 .hero-style-5 .hero-image img {
-  width: 100%;
+  width: 90%;
+  max-width: 520px;
+  margin-left: auto;
 }
 
 .hero-section-wrapper-5 .hero-style-5 .shapes .shape {
