@@ -8,6 +8,9 @@
   --dark-text-muted: #c7d2fe;
   --dark-glow: rgba(56, 189, 248, 0.45);
   --dark-glow-strong: rgba(56, 189, 248, 0.65);
+  --cinematic-bg: radial-gradient(circle at 12% 22%, rgba(60, 38, 20, 0.22), transparent 50%),
+    radial-gradient(circle at 88% 78%, rgba(108, 47, 39, 0.22), transparent 55%),
+    linear-gradient(180deg, #0b0b0b 0%, #120e0e 80%);
 }
 
 body {
@@ -70,10 +73,11 @@ a:focus {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero-section-wrapper-5 {
@@ -82,6 +86,56 @@ a:focus {
     radial-gradient(circle at 0% 85%, rgba(120, 63, 21, 0.14), transparent 48%),
     radial-gradient(circle at 85% 95%, rgba(167, 83, 90, 0.14), transparent 52%),
     var(--dark-bg);
+}
+
+.hero-section-wrapper-5.hero--painting {
+  background: transparent;
+}
+
+/* ===== HERO: pintura a pantalla completa ===== */
+.hero-section.hero--painting {
+  position: relative;
+  min-height: clamp(560px, 100vh, 980px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../img/hero/hero-5/backg.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.hero-section.hero--painting > img {
+  display: none !important;
+}
+
+.hero-section.hero--painting::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(1200px 600px at 20% 15%, rgba(0, 0, 0, 0.45), transparent 60%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55));
+  backdrop-filter: blur(0.3px);
+}
+
+.hero-section.hero--painting .container,
+.hero-section.hero--painting .content,
+.hero-section.hero--painting .hero-content,
+.hero-section.hero--painting .hero-content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== FONDO CINEMÁTICO PARA EL RESTO ===== */
+section:not(.hero--painting) {
+  background: var(--cinematic-bg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+main > *:not(.hero--painting) {
+  background: var(--cinematic-bg);
 }
 
 .hero-section-wrapper-5 .header.sticky {
