@@ -15,6 +15,191 @@
     <link rel="stylesheet" href="assets/css/animate.css"/>
     <link rel="stylesheet" href="assets/css/lindy-uikit.css"/>
     <link rel="stylesheet" href="assets/css/dark-theme.css"/>
+    <style>
+      .automation-section {
+        position: relative;
+        padding: 100px 0;
+        background: linear-gradient(135deg, #0c0c0c, #1b1b1b 80%);
+        overflow: hidden;
+      }
+
+      .automation-section::before,
+      .automation-section::after {
+        content: "";
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        max-width: 600px;
+        max-height: 600px;
+        background: radial-gradient(circle at center, rgba(255, 179, 71, 0.25) 0%, rgba(255, 179, 71, 0) 70%);
+        filter: blur(40px);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .automation-section::before {
+        top: -20%;
+        left: -10%;
+      }
+
+      .automation-section::after {
+        bottom: -25%;
+        right: -15%;
+      }
+
+      .automation-section .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .automation-title {
+        max-width: 660px;
+        margin: 0 auto 60px;
+      }
+
+      .automation-title h3 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #ffffff;
+      }
+
+      .automation-title p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 15px;
+      }
+
+      .automation-card {
+        position: relative;
+        background: rgba(20, 20, 20, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 40px 30px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        overflow: hidden;
+      }
+
+      .automation-card::before {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(circle at center, rgba(255, 179, 71, 0.35), rgba(255, 179, 71, 0));
+        opacity: 0.6;
+        filter: blur(60px);
+        animation: automationGlow 6s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      .automation-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid transparent;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 179, 71, 0.35)) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .automation-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+      }
+
+      .automation-content {
+        position: relative;
+        z-index: 3;
+      }
+
+      .automation-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .automation-icon svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .automation-card h5 {
+        color: #ffffff;
+        margin-bottom: 12px;
+      }
+
+      .automation-card p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 30px;
+      }
+
+      .automation-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 24px;
+        border-radius: 999px;
+        background: rgba(16, 104, 211, 0.15);
+        color: #5cc8ff;
+        font-weight: 600;
+        border: 1px solid rgba(92, 200, 255, 0.4);
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .automation-btn:hover {
+        background: rgba(92, 200, 255, 0.25);
+        color: #bde8ff;
+        box-shadow: 0 0 20px rgba(92, 200, 255, 0.35);
+      }
+
+      @keyframes automationGlow {
+        0%,
+        100% {
+          opacity: 0.45;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scale(1.1);
+        }
+      }
+
+      @media (max-width: 991px) {
+        .automation-title h3 {
+          font-size: 30px;
+        }
+
+        .automation-card {
+          padding: 32px 28px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .automation-section::before,
+        .automation-section::after {
+          width: 80vw;
+          height: 80vw;
+        }
+
+        .automation-title {
+          margin-bottom: 40px;
+        }
+
+        .automation-card {
+          margin-bottom: 24px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!--[if lte IE 9]>
@@ -222,6 +407,76 @@
       </div>
     </section>
     <!-- ========================= feature style-5 end ========================= -->
+
+    <!-- ========================= automations section start ========================= -->
+    <section class="automation-section">
+      <div class="container">
+        <div class="automation-title text-center wow fadeInUp" data-wow-delay=".2s">
+          <h3>n8n Automations &amp; Integrations</h3>
+          <p>Explora algunos de mis flujos automatizados y proyectos de integración.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="automation-card wow fadeInUp" data-wow-delay=".2s">
+              <div class="automation-content">
+                <div class="automation-icon">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="30" stroke="#ffb347" stroke-width="4" opacity="0.6" />
+                    <path d="M19 24c4-8 18-8 22 0M23 40c-4-8 14-14 18-6" stroke="#ffb347" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="20" cy="24" r="4" fill="#ffb347" />
+                    <circle cx="44" cy="24" r="4" fill="#ffb347" />
+                    <circle cx="32" cy="40" r="4" fill="#ffb347" />
+                  </svg>
+                </div>
+                <h5>Email Parser</h5>
+                <p>Clasifica y extrae datos de correos entrantes para activar flujos automáticos.</p>
+                <a href="#0" class="automation-btn">Ver proyecto</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="automation-card wow fadeInUp" data-wow-delay=".35s">
+              <div class="automation-content">
+                <div class="automation-icon">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="30" stroke="#ffb347" stroke-width="4" opacity="0.6" />
+                    <path d="M18 32h10l6-8 10 16h10" stroke="#ffb347" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="18" cy="32" r="4" fill="#ffb347" />
+                    <circle cx="34" cy="24" r="4" fill="#ffb347" />
+                    <circle cx="44" cy="40" r="4" fill="#ffb347" />
+                  </svg>
+                </div>
+                <h5>Webhook Notifier</h5>
+                <p>Monitorea eventos críticos y envía alertas en tiempo real a múltiples canales.</p>
+                <a href="#0" class="automation-btn">Ver proyecto</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="automation-card wow fadeInUp" data-wow-delay=".5s">
+              <div class="automation-content">
+                <div class="automation-icon">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="30" stroke="#ffb347" stroke-width="4" opacity="0.6" />
+                    <path d="M20 42V22h24v20" stroke="#ffb347" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M24 30h16M24 36h10" stroke="#ffb347" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="44" cy="42" r="6" fill="none" stroke="#ffb347" stroke-width="4" />
+                    <path d="M44 39v3l2 2" stroke="#ffb347" stroke-width="3" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <h5>Supabase Sync</h5>
+                <p>Sincroniza colecciones clave entre APIs y Supabase sin intervención manual.</p>
+                <a href="#0" class="automation-btn">Ver proyecto</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========================= automations section end ========================= -->
 
     <!-- ========================= contact-style-3 start ========================= -->
     <section id="contact" class="contact-section contact-style-3">
