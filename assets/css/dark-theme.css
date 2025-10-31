@@ -222,6 +222,79 @@ main > *:not(.hero--painting) {
   background-color: var(--dark-bg);
 }
 
+.feature-style-5 {
+  background: #000000;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0;
+  min-height: 100vh;
+}
+
+section.feature-style-5,
+.feature-section.feature-style-5 {
+  background: #000000;
+}
+
+.feature-style-5 .container {
+  position: relative;
+  z-index: 1;
+}
+
+.feature-style-5::before,
+.feature-style-5::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(40vw, 520px);
+  height: 110%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.feature-style-5::before {
+  left: 0;
+  background-image: url("../img/hero/hero-5/imgizq.png");
+}
+
+.feature-style-5::after {
+  right: 0;
+  background-image: url("../img/hero/hero-5/imgder.png");
+}
+
+@media (max-width: 991px) {
+  .feature-style-5 {
+    padding: 100px 0;
+  }
+
+  .feature-style-5::before,
+  .feature-style-5::after {
+    width: min(45vw, 360px);
+    height: 120%;
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 767px) {
+  .feature-style-5 {
+    padding: 80px 0;
+    min-height: auto;
+  }
+
+  .feature-style-5::before,
+  .feature-style-5::after {
+    width: 65vw;
+    opacity: 0.6;
+  }
+}
+
 .feature-style-5 .single-feature,
 .pricing-style-4 .pricing-active .single-pricing,
 .about-style-2 .about-image,
