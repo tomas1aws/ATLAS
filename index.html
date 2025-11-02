@@ -18,9 +18,12 @@
     <style>
       .automation-section {
         position: relative;
-        padding: 110px 0;
-        background: linear-gradient(180deg, rgba(7, 10, 18, 0.95) 0%, rgba(10, 14, 24, 0.9) 100%);
+        padding: 140px 0 120px;
+        background: radial-gradient(circle at 50% -20%, rgba(0, 188, 212, 0.24), transparent 48%),
+          radial-gradient(circle at 50% 0%, rgba(10, 23, 36, 0.85), rgba(4, 6, 10, 0.98) 60%),
+          #030409;
         overflow: hidden;
+        color: #e4ebff;
       }
 
       .automation-section::before,
@@ -32,21 +35,22 @@
       }
 
       .automation-section::before {
-        inset: -20% -10% -30% -10%;
+        inset: -28% -18% -24% -18%;
         background:
-          radial-gradient(circle at 15% 0%, rgba(0, 112, 243, 0.18), transparent 60%),
-          radial-gradient(circle at 85% 15%, rgba(120, 70, 255, 0.16), transparent 65%),
-          radial-gradient(circle at 50% 110%, rgba(0, 112, 243, 0.16), transparent 70%);
-        filter: blur(70px);
-        opacity: 0.75;
+          radial-gradient(circle at 50% -20%, rgba(0, 240, 255, 0.25), transparent 55%),
+          radial-gradient(circle at 10% 30%, rgba(10, 35, 82, 0.5), transparent 68%),
+          radial-gradient(circle at 90% 50%, rgba(9, 28, 70, 0.45), transparent 72%);
+        filter: blur(120px);
+        opacity: 0.7;
       }
 
       .automation-section::after {
-        inset: -18% -20% -35% -20%;
+        inset: -26% -30% -40% -30%;
         background:
-          radial-gradient(circle at 0% 35%, rgba(0, 180, 255, 0.22), transparent 60%),
-          radial-gradient(circle at 100% 65%, rgba(80, 90, 255, 0.18), transparent 60%);
-        filter: blur(80px);
+          radial-gradient(circle at 50% 0%, rgba(0, 188, 255, 0.22), transparent 60%),
+          radial-gradient(circle at 16% 90%, rgba(0, 90, 150, 0.22), transparent 68%),
+          radial-gradient(circle at 84% 110%, rgba(0, 130, 210, 0.18), transparent 70%);
+        filter: blur(110px);
         opacity: 0.6;
       }
 
@@ -55,24 +59,37 @@
       .automation-card,
       .automation-content {
         position: relative;
+        z-index: 3;
+      }
+
+      .transition-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 160px;
+        background: linear-gradient(to bottom, rgba(3, 4, 8, 0.82), rgba(3, 4, 8, 0));
+        pointer-events: none;
         z-index: 2;
+        mix-blend-mode: normal;
       }
 
       .automation-title {
         max-width: 660px;
         margin: 0 auto 60px;
         text-align: center;
+        color: #f2f6ff;
       }
 
       .automation-title::before {
         content: "";
         position: absolute;
-        inset: -36px -56px -26px;
+        inset: -54px -68px -40px;
         background:
-          radial-gradient(circle at 50% 0%, rgba(0, 112, 243, 0.14), transparent 70%),
-          radial-gradient(circle at 45% 100%, rgba(100, 60, 255, 0.14), transparent 75%);
-        filter: blur(50px);
-        opacity: 0.6;
+          radial-gradient(circle at 50% 0%, rgba(0, 220, 255, 0.28), transparent 72%),
+          radial-gradient(circle at 40% 100%, rgba(0, 120, 200, 0.22), transparent 80%);
+        filter: blur(85px);
+        opacity: 0.75;
         pointer-events: none;
         z-index: -1;
       }
@@ -84,30 +101,32 @@
 
       .automation-title p {
         margin-top: 18px;
+        color: rgba(219, 233, 255, 0.7);
       }
 
       .automation-card {
         position: relative;
-        padding: 40px 32px;
+        padding: 42px 34px;
         border-radius: 22px;
-        background: rgba(11, 17, 29, 0.55);
-        border: 1px solid rgba(0, 140, 255, 0.2);
+        background: rgba(6, 12, 20, 0.62);
+        border: 1px solid rgba(0, 255, 255, 0.18);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
         box-shadow:
-          0 25px 60px rgba(0, 0, 0, 0.8),
-          inset 0 0 18px rgba(0, 112, 243, 0.08);
-        transition: transform 0.35s ease, box-shadow 0.35s ease;
+          0 30px 70px rgba(0, 0, 0, 0.85),
+          inset 0 0 20px rgba(0, 190, 255, 0.08);
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
         overflow: hidden;
+        color: #f0f6ff;
       }
 
       .automation-card::before {
         content: "";
         position: absolute;
-        inset: -45%;
-        background: radial-gradient(circle at center, rgba(0, 150, 255, 0.22), rgba(0, 150, 255, 0));
-        opacity: 0.45;
-        filter: blur(80px);
+        inset: -46%;
+        background: radial-gradient(circle at center, rgba(0, 220, 255, 0.34), rgba(0, 220, 255, 0));
+        opacity: 0.5;
+        filter: blur(100px);
         animation: automationGlow 6s ease-in-out infinite;
         z-index: 1;
       }
@@ -118,12 +137,20 @@
         inset: 0;
         border-radius: inherit;
         border: 1px solid transparent;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(0, 112, 243, 0.25)) border-box;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(0, 200, 255, 0.25)) border-box;
         -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         z-index: 3;
         pointer-events: none;
+      }
+
+      .automation-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(0, 255, 255, 0.4);
+        box-shadow:
+          0 30px 75px rgba(0, 40, 80, 0.7),
+          inset 0 0 24px rgba(0, 220, 255, 0.24);
       }
 
       .automation-content {
@@ -135,19 +162,19 @@
         width: 64px;
         height: 64px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(4, 9, 16, 0.62);
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 24px;
-        border: 1px solid rgba(0, 140, 255, 0.2);
-        box-shadow: 0 0 24px rgba(0, 112, 243, 0.22);
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        box-shadow: 0 0 24px rgba(0, 220, 255, 0.22);
       }
 
       .automation-icon svg {
         width: 36px;
         height: 36px;
-        filter: drop-shadow(0 0 12px rgba(0, 112, 243, 0.35));
+        filter: drop-shadow(0 0 12px rgba(0, 200, 255, 0.4));
       }
 
       .automation-card h5 {
@@ -156,7 +183,7 @@
 
       .automation-card p {
         margin-bottom: 30px;
-        color: rgba(194, 205, 224, 0.78);
+        color: rgba(219, 233, 255, 0.75);
       }
 
       .automation-btn {
@@ -165,22 +192,22 @@
         justify-content: center;
         padding: 10px 24px;
         border-radius: 999px;
-        background: linear-gradient(145deg, rgba(10, 40, 90, 0.8), rgba(0, 112, 243, 0.75));
+        background: linear-gradient(145deg, rgba(3, 20, 34, 0.95), rgba(0, 140, 190, 0.92));
         color: #f4f8ff;
         font-weight: 600;
-        border: 1px solid rgba(0, 140, 255, 0.3);
+        border: 1px solid rgba(0, 255, 255, 0.25);
         text-decoration: none;
         box-shadow:
-          0 0 16px rgba(0, 112, 243, 0.25),
-          inset 0 0 10px rgba(0, 112, 243, 0.18);
+          0 0 18px rgba(0, 210, 255, 0.3),
+          inset 0 0 12px rgba(0, 210, 255, 0.24);
         transition: all 0.3s ease;
       }
 
       .automation-btn:hover {
-        background: linear-gradient(145deg, rgba(14, 55, 120, 0.9), rgba(0, 135, 255, 0.85));
+        background: linear-gradient(145deg, rgba(4, 28, 46, 0.98), rgba(0, 220, 255, 0.98));
         box-shadow:
-          0 0 22px rgba(0, 150, 255, 0.36),
-          inset 0 0 14px rgba(0, 150, 255, 0.25);
+          0 0 28px rgba(0, 255, 255, 0.4),
+          inset 0 0 18px rgba(0, 255, 255, 0.3);
         transform: translateY(-2px);
       }
 
@@ -208,11 +235,11 @@
 
       @media (max-width: 767px) {
         .automation-section::before {
-          inset: -30% -10% -34% -10%;
+          inset: -38% -16% -30% -16%;
         }
 
         .automation-section::after {
-          inset: -32% -28% -38% -28%;
+          inset: -34% -30% -42% -30%;
         }
 
         .automation-title {
@@ -222,6 +249,228 @@
         .automation-card {
           margin-bottom: 24px;
         }
+      }
+
+      .contact-section {
+        position: relative;
+        padding: 130px 0 140px;
+        background: linear-gradient(180deg, rgba(4, 6, 10, 0.98) 0%, #050910 52%, #030407 100%);
+        color: #e0e6f2;
+        overflow: hidden;
+      }
+
+      .contact-section::before {
+        content: "";
+        position: absolute;
+        inset: -20% -24% auto -24%;
+        height: 260px;
+        background: radial-gradient(circle at top, rgba(0, 220, 255, 0.24), transparent 75%);
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .contact-section::after {
+        content: "";
+        position: absolute;
+        inset: auto -28% -26% -28%;
+        height: 260px;
+        background: radial-gradient(circle at bottom, rgba(0, 150, 210, 0.16), transparent 72%);
+        filter: blur(130px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .contact-section .container,
+      .contact-section .row,
+      .contact-section .section-title,
+      .contact-form-wrapper,
+      .contact-section .left-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-section .section-title h3,
+      .contact-section .section-title p {
+        color: inherit;
+      }
+
+      .contact-form-wrapper {
+        padding: 44px;
+        border-radius: 28px;
+        background: rgba(6, 10, 18, 0.6);
+        border: 1px solid rgba(0, 255, 255, 0.16);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.75);
+      }
+
+      .contact-form-wrapper .single-input {
+        background: rgba(3, 8, 14, 0.55);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 120, 170, 0.35);
+        color: #e0e6f2;
+      }
+
+      .contact-form-wrapper .single-input .form-input {
+        background: transparent;
+        color: inherit;
+      }
+
+      .contact-form-wrapper .single-input i {
+        color: rgba(0, 225, 255, 0.6);
+      }
+
+      .contact-form-wrapper .single-input:focus-within {
+        border-color: rgba(0, 255, 255, 0.65);
+        box-shadow: 0 0 16px rgba(0, 220, 255, 0.38);
+      }
+
+      .contact-form-wrapper .form-button .button {
+        background: linear-gradient(135deg, rgba(3, 20, 34, 0.96), rgba(0, 150, 205, 0.96));
+        border: 1px solid rgba(0, 255, 255, 0.28);
+        color: #f2f6ff;
+        box-shadow: 0 0 20px rgba(0, 220, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-form-wrapper .form-button .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 28px rgba(0, 255, 255, 0.42);
+      }
+
+      .contact-form-wrapper input,
+      .contact-form-wrapper textarea {
+        color: inherit;
+      }
+
+      .contact-form-wrapper input::placeholder,
+      .contact-form-wrapper textarea::placeholder {
+        color: rgba(224, 230, 242, 0.5);
+      }
+
+      .contact-form-wrapper input:focus,
+      .contact-form-wrapper textarea:focus {
+        border-color: #00ffff;
+        box-shadow: 0 0 6px #00ffff;
+      }
+
+      .contact-section .left-wrapper {
+        padding: 44px 36px;
+        border-radius: 28px;
+        background: rgba(5, 8, 16, 0.6);
+        border: 1px solid rgba(0, 255, 255, 0.14);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.7);
+      }
+
+      .contact-section .left-wrapper .single-item {
+        background: rgba(4, 10, 18, 0.6);
+        border: 1px solid rgba(0, 140, 200, 0.28);
+        border-radius: 20px;
+        padding: 26px;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        color: #e0e6f2;
+      }
+
+      .contact-section .left-wrapper .single-item:hover {
+        border-color: rgba(0, 255, 255, 0.4);
+        box-shadow: 0 0 24px rgba(0, 220, 255, 0.26);
+      }
+
+      .contact-section .left-wrapper .icon {
+        background: rgba(0, 220, 255, 0.16);
+        color: #18ffff;
+        border: 1px solid rgba(0, 255, 255, 0.32);
+        box-shadow: 0 0 18px rgba(0, 220, 255, 0.22);
+        border-radius: 18px;
+      }
+
+      .footer {
+        position: relative;
+        background:
+          radial-gradient(circle at 50% -30%, rgba(0, 220, 255, 0.16), transparent 58%),
+          linear-gradient(180deg, #030408 0%, #04060a 65%, #020306 100%);
+        color: #c0c9da;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        inset: -28% -18% auto -18%;
+        height: 280px;
+        background: radial-gradient(circle at top, rgba(0, 240, 255, 0.2), transparent 78%);
+        filter: blur(140px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .footer .container,
+      .footer .widget-wrapper,
+      .footer .copyright-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer h6,
+      .footer p,
+      .footer a,
+      .footer .text span,
+      .footer .text b {
+        color: inherit;
+      }
+
+      .footer .footer-widget,
+      .footer .download-app li a {
+        background: rgba(4, 8, 16, 0.62);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 160, 220, 0.22);
+        padding: 28px;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 24px 62px rgba(0, 0, 0, 0.75);
+      }
+
+      .footer .footer-widget .logo img {
+        filter: drop-shadow(0 0 12px rgba(0, 200, 255, 0.45));
+      }
+
+      .footer a {
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #00e5ff;
+        text-shadow: 0 0 8px #00e5ff;
+      }
+
+      .footer .socials li a {
+        border: 1px solid rgba(0, 220, 255, 0.3);
+        background: rgba(3, 8, 14, 0.72);
+        box-shadow: 0 0 16px rgba(0, 220, 255, 0.24);
+      }
+
+      .footer .socials li a:hover {
+        background: rgba(0, 220, 255, 0.24);
+        color: #00e5ff;
+        box-shadow: 0 0 26px rgba(0, 220, 255, 0.42);
+      }
+
+      .footer .download-app li a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .footer .download-app li a:hover {
+        border-color: rgba(0, 255, 255, 0.38);
+        box-shadow: 0 0 26px rgba(0, 220, 255, 0.28);
+      }
+
+      .footer .download-app .icon {
+        color: #18ffff;
       }
     </style>
   </head>
@@ -331,6 +580,7 @@
 
     <!-- ========================= automations section start ========================= -->
     <section class="automation-section n8n-section">
+      <div class="transition-overlay" aria-hidden="true"></div>
       <div class="container">
         <div class="automation-title text-center wow fadeInUp" data-wow-delay=".2s">
           <h3>n8n Automations &amp; Integrations</h3>
