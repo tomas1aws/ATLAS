@@ -300,29 +300,49 @@
       }
 
       .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 40px;
-        align-items: start;
-        justify-items: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
       }
 
-      .contact-info {
-        display: grid;
-        gap: 20px;
-        width: min(360px, 90vw);
+      .contact-form {
+        width: min(100%, 780px);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        padding: 2rem;
+        background: rgba(10, 10, 15, 0.6);
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
       }
 
-      .contact-info .info-item {
-        border-radius: 18px;
-        padding: 20px 26px;
-        background: linear-gradient(140deg, rgba(8, 10, 18, 0.85), rgba(5, 6, 14, 0.6));
-        border: 1px solid rgba(122, 90, 245, 0.25);
-        color: var(--text-primary);
-        box-shadow:
-          0 0 35px rgba(122, 90, 245, 0.2),
-          inset 0 0 20px rgba(0, 0, 0, 0.45);
-        text-align: left;
+      .contact-form textarea {
+        resize: none;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 12px 16px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+      }
+
+      .contact-form button {
+        align-self: center;
+        margin-top: 1.5rem;
+      }
+
+      @media (min-width: 992px) {
+        .contact-form {
+          width: 70%;
+        }
       }
 
       footer,
@@ -608,19 +628,13 @@
           </p>
 
           <div class="contact-grid">
-            <form class="glass-form">
+            <form class="glass-form contact-form">
               <input type="text" placeholder="Nombre" />
               <input type="email" placeholder="Email" />
               <input type="text" placeholder="Asunto" />
               <textarea placeholder="Mensaje"></textarea>
               <button type="submit">Enviar</button>
             </form>
-
-            <div class="contact-info">
-              <div class="info-item">📞 +54 11 4085 0657</div>
-              <div class="info-item">✉️ tperticaro@gmail.com</div>
-              <div class="info-item">📍 Buenos Aires, Argentina</div>
-            </div>
           </div>
         </div>
       </section>
