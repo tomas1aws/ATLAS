@@ -123,10 +123,6 @@ a:focus {
   background: var(--text-primary);
 }
 
-.hero-section-wrapper-5 .header-action a {
-  color: var(--text-primary);
-}
-
 /* ========================= hero ========================= */
 
 .hero-section-wrapper-5 {
