@@ -372,26 +372,6 @@ p {
   background: #ffffff;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .header.header-6 .header-action {
-    position: absolute;
-    right: 60px;
-  }
-}
-
-@media (max-width: 767px) {
-  .header.header-6 .header-action {
-    position: absolute;
-    right: 60px;
-  }
-}
-
-.header.header-6 .header-action a {
-  font-size: 16px;
-  color: #585978;
-  padding: 12px;
-}
-
 .header.header-6 .navbar {
   padding: 20px 0;
   border-radius: 0px;
@@ -676,8 +656,7 @@ p {
   background: transparent;
 }
 
-.hero-section-wrapper-5 .header .navbar-nav .nav-item a,
-.hero-section-wrapper-5 .header .header-action a {
+.hero-section-wrapper-5 .header .navbar-nav .nav-item a {
   color: rgba(230, 234, 255, 0.85);
 }
 
@@ -687,16 +666,11 @@ p {
   border-color: rgba(138, 180, 255, 0.4);
 }
 
-.hero-section-wrapper-5 .header .header-action a:hover {
-  color: #ffffff;
-}
-
 .hero-section-wrapper-5 .header .navbar-toggler .toggler-icon {
   background-color: rgba(230, 234, 255, 0.8);
 }
 
-.hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a,
-.hero-section-wrapper-5 .header.sticky .header-action a {
+.hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a {
   color: #585978;
 }
 
@@ -704,10 +678,6 @@ p {
 .hero-section-wrapper-5 .header.sticky .navbar-nav .nav-item a.active {
   color: #2F80ED;
   border-color: #2F80ED;
-}
-
-.hero-section-wrapper-5 .header.sticky .header-action a:hover {
-  color: #2F80ED;
 }
 
 .hero-section-wrapper-5 .header.sticky .navbar-toggler .toggler-icon {
