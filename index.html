@@ -123,9 +123,22 @@
 
       .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 30px;
-        justify-items: center;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        justify-items: stretch;
+        align-items: stretch;
+      }
+
+      @media (min-width: 768px) {
+        .card-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .card-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
       }
 
       .glow-card,
@@ -162,8 +175,10 @@
       .card:hover {
         transform: translateY(-12px);
         box-shadow:
-          0 0 60px rgba(0, 255, 255, 0.35),
-          0 30px 80px rgba(10, 10, 18, 0.8);
+          0 0 35px rgba(0, 255, 255, 0.5),
+          0 20px 45px rgba(0, 255, 255, 0.22),
+          0 32px 90px rgba(10, 10, 18, 0.85);
+        border-color: rgba(0, 255, 255, 0.35);
       }
 
       .glow-card:hover::before,
@@ -536,6 +551,48 @@
               <div class="icon">🧩</div>
               <h3>Supabase Sync</h3>
               <p>Sincroniza colecciones clave entre APIs y bases de datos.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">🧾</div>
+              <h3>API Logger</h3>
+              <p>Audita llamadas REST y crea reportes dinámicos para detectar anomalías.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">📇</div>
+              <h3>CRM Data Push</h3>
+              <p>Actualiza prospectos en CRM con datos enriquecidos en tiempo real.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">📊</div>
+              <h3>Google Sheets Sync</h3>
+              <p>Orquesta sincronizaciones periódicas entre n8n y hojas compartidas.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">⚡</div>
+              <h3>Slack Alerts</h3>
+              <p>Envía notificaciones inteligentes a equipos según prioridades.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">🤖</div>
+              <h3>Telegram Bot Trigger</h3>
+              <p>Activa bots de soporte mediante comandos y respuestas automáticas.</p>
+              <button>Ver proyecto</button>
+            </div>
+
+            <div class="glow-card">
+              <div class="icon">☁️</div>
+              <h3>Cloud Backup Flow</h3>
+              <p>Respalda datos críticos hacia almacenamiento seguro y cifrado.</p>
               <button>Ver proyecto</button>
             </div>
           </div>
