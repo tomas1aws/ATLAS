@@ -137,7 +137,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 32px;
-        justify-items: stretch;
+        justify-items: center;
         align-items: stretch;
       }
 
@@ -157,9 +157,9 @@
       .card {
         position: relative;
         width: 100%;
-        max-width: 340px;
-        padding: 32px;
-        border-radius: 22px;
+        max-width: 360px;
+        padding: 38px 36px;
+        border-radius: 24px;
         background: linear-gradient(145deg, rgba(10, 12, 24, 0.75), rgba(5, 5, 12, 0.55));
         border: 1px solid rgba(0, 255, 255, 0.16);
         backdrop-filter: var(--card-blur);
@@ -167,7 +167,10 @@
           0 0 45px rgba(0, 255, 255, 0.18),
           0 25px 60px rgba(0, 0, 0, 0.65);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
-        text-align: left;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .glow-card::before,
@@ -198,25 +201,39 @@
         opacity: 0.85;
       }
 
-      .glow-card .icon {
-        font-size: 2.2rem;
-        margin-bottom: 18px;
-        color: var(--accent-cyan);
-        text-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
+      .project-icon {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .glow-card h3,
-      .card h3 {
-        font-size: 1.35rem;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
+      .project-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .project-card {
+        height: 100%;
+        width: 100%;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.85rem;
         color: #ffffff;
+        letter-spacing: 0.01em;
       }
 
-      .glow-card p,
-      .card p {
+      .project-description {
         color: var(--text-secondary);
-        line-height: 1.6;
+        line-height: 1.65;
+        margin: 0 auto;
+        max-width: 24ch;
       }
 
       main button,
@@ -255,6 +272,10 @@
       .glass-form button:focus {
         outline: none;
         box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.35);
+      }
+
+      .project-button {
+        margin-top: 24px;
       }
 
       .glass-form {
@@ -553,67 +574,85 @@
           </p>
 
           <div class="card-grid">
-            <div class="glow-card">
-              <div class="icon">📧</div>
-              <h3>Email Parser</h3>
-              <p>Clasifica y extrae datos de correos para activar flujos automáticos.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/email-parser.svg" alt="Icono de Email Parser" />
+              </div>
+              <h3 class="project-title">Email Parser</h3>
+              <p class="project-description">Clasifica y extrae datos de correos para activar flujos automáticos.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">🔔</div>
-              <h3>Webhook Notifier</h3>
-              <p>Monitorea eventos y envía alertas en tiempo real a múltiples canales.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/webhook-notifier.svg" alt="Icono de Webhook Notifier" />
+              </div>
+              <h3 class="project-title">Webhook Notifier</h3>
+              <p class="project-description">Monitorea eventos y envía alertas en tiempo real a múltiples canales.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">🧩</div>
-              <h3>Supabase Sync</h3>
-              <p>Sincroniza colecciones clave entre APIs y bases de datos.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/supabase-sync.svg" alt="Icono de Supabase Sync" />
+              </div>
+              <h3 class="project-title">Supabase Sync</h3>
+              <p class="project-description">Sincroniza colecciones clave entre APIs y bases de datos.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">🧾</div>
-              <h3>API Logger</h3>
-              <p>Audita llamadas REST y crea reportes dinámicos para detectar anomalías.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/api-logger.svg" alt="Icono de API Logger" />
+              </div>
+              <h3 class="project-title">API Logger</h3>
+              <p class="project-description">Audita llamadas REST y crea reportes dinámicos para detectar anomalías.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">📇</div>
-              <h3>CRM Data Push</h3>
-              <p>Actualiza prospectos en CRM con datos enriquecidos en tiempo real.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/crm-data-push.svg" alt="Icono de CRM Data Push" />
+              </div>
+              <h3 class="project-title">CRM Data Push</h3>
+              <p class="project-description">Actualiza prospectos en CRM con datos enriquecidos en tiempo real.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">📊</div>
-              <h3>Google Sheets Sync</h3>
-              <p>Orquesta sincronizaciones periódicas entre n8n y hojas compartidas.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/google-sheets-sync.svg" alt="Icono de Google Sheets Sync" />
+              </div>
+              <h3 class="project-title">Google Sheets Sync</h3>
+              <p class="project-description">Orquesta sincronizaciones periódicas entre n8n y hojas compartidas.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">⚡</div>
-              <h3>Slack Alerts</h3>
-              <p>Envía notificaciones inteligentes a equipos según prioridades.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/slack-alerts.svg" alt="Icono de Slack Alerts" />
+              </div>
+              <h3 class="project-title">Slack Alerts</h3>
+              <p class="project-description">Envía notificaciones inteligentes a equipos según prioridades.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">🤖</div>
-              <h3>Telegram Bot Trigger</h3>
-              <p>Activa bots de soporte mediante comandos y respuestas automáticas.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/telegram-bot-trigger.svg" alt="Icono de Telegram Bot Trigger" />
+              </div>
+              <h3 class="project-title">Telegram Bot Trigger</h3>
+              <p class="project-description">Activa bots de soporte mediante comandos y respuestas automáticas.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
 
-            <div class="glow-card">
-              <div class="icon">☁️</div>
-              <h3>Cloud Backup Flow</h3>
-              <p>Respalda datos críticos hacia almacenamiento seguro y cifrado.</p>
-              <button>Ver proyecto</button>
+            <div class="glow-card project-card">
+              <div class="project-icon">
+                <img src="assets/icons/cloud-backup-flow.svg" alt="Icono de Cloud Backup Flow" />
+              </div>
+              <h3 class="project-title">Cloud Backup Flow</h3>
+              <p class="project-description">Respalda datos críticos hacia almacenamiento seguro y cifrado.</p>
+              <button class="project-button">Ver proyecto</button>
             </div>
           </div>
         </div>
