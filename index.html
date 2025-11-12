@@ -96,8 +96,60 @@
         padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.75rem, 5vw, 3rem);
         border-radius: 1rem;
         overflow: hidden;
-        background: rgba(20, 24, 34, 0.45);
+        position: relative;
+        isolation: isolate;
+        --spotlight-size: clamp(220px, 45vw, 360px);
+        --spotlight-alpha: 0;
+        --spotlight-hue: 195;
+        --soft-alpha: 0;
+        --soft-visibility: 0;
+        --glow-soft-size: clamp(180px, 42vw, 320px);
+        backdrop-filter: var(--card-blur);
+        -webkit-backdrop-filter: var(--card-blur);
+        background: radial-gradient(
+            var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px)
+              calc(var(--y, 0) * 1px),
+            hsl(var(--spotlight-hue, 195) 100% 72% / var(--spotlight-alpha, 0)),
+            transparent 68%
+          ),
+          rgba(20, 24, 34, 0.45);
         box-shadow: 0 28px 60px rgba(5, 10, 20, 0.42);
+        transition: background 0.25s ease-out, box-shadow 0.35s ease-out;
+      }
+
+      .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before,
+      .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        transition: opacity 0.2s ease-out;
+        opacity: var(--soft-visibility, 0);
+        z-index: -1;
+      }
+
+      .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before {
+        background-image: radial-gradient(
+          var(--glow-soft-size) var(--glow-soft-size) at calc(var(--x, 0) * 1px)
+            calc(var(--y, 0) * 1px),
+          rgba(255, 255, 255, var(--soft-alpha, 0)),
+          transparent 70%
+        );
+        mix-blend-mode: screen;
+      }
+
+      .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
+        box-shadow: 0 0 clamp(90px, 26vw, 160px) rgba(0, 200, 255, 0.16);
+      }
+
+      .hero-section.hero-style-5 .hero-content-wrapper.is-glowing {
+        --spotlight-alpha: 0.32;
+        --soft-alpha: 0.22;
+        --soft-visibility: 1;
+        box-shadow:
+          0 32px 75px rgba(5, 10, 20, 0.58),
+          0 0 48px rgba(0, 200, 255, 0.22);
       }
 
       .hero-section.hero-style-5 .hero-content-wrapper img {
@@ -125,6 +177,8 @@
           width: 100%;
           padding: 2.5rem 1.5rem;
           box-shadow: 0 18px 45px rgba(5, 10, 20, 0.38);
+          --spotlight-size: clamp(200px, 70vw, 320px);
+          --glow-soft-size: clamp(160px, 62vw, 260px);
         }
       }
 
@@ -630,7 +684,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
-              <div class="hero-content-wrapper text-center">
+              <div class="hero-content-wrapper text-center" data-glow>
                 <img
                   src="assets/img/hero/hero-5/titlepng.png"
                   alt="ATLAS logo"

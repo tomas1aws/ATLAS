@@ -101,4 +101,45 @@
 	// WOW active
     new WOW().init();
 
+    const heroGlowCard = document.querySelector(
+      '.hero-section.hero-style-5 .hero-content-wrapper[data-glow]'
+    );
+
+    if (heroGlowCard) {
+      const setGlowPosition = (event) => {
+        const rect = heroGlowCard.getBoundingClientRect();
+        const pointerX =
+          typeof event.clientX === 'number'
+            ? event.clientX
+            : rect.left + rect.width / 2;
+        const pointerY =
+          typeof event.clientY === 'number'
+            ? event.clientY
+            : rect.top + rect.height / 2;
+        const x = pointerX - rect.left;
+        const y = pointerY - rect.top;
+
+        heroGlowCard.style.setProperty('--x', x.toFixed(2));
+        heroGlowCard.style.setProperty('--y', y.toFixed(2));
+      };
+
+      const activateGlow = (event) => {
+        heroGlowCard.classList.add('is-glowing');
+        setGlowPosition(event);
+      };
+
+      const deactivateGlow = () => {
+        heroGlowCard.classList.remove('is-glowing');
+        heroGlowCard.style.removeProperty('--x');
+        heroGlowCard.style.removeProperty('--y');
+      };
+
+      heroGlowCard.addEventListener('pointerenter', activateGlow);
+      heroGlowCard.addEventListener('pointerdown', activateGlow);
+      heroGlowCard.addEventListener('pointermove', setGlowPosition);
+      heroGlowCard.addEventListener('pointerleave', deactivateGlow);
+      heroGlowCard.addEventListener('pointerup', deactivateGlow);
+      heroGlowCard.addEventListener('pointercancel', deactivateGlow);
+    }
+
 })();
