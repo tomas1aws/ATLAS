@@ -827,3 +827,27 @@ hr {
     margin-bottom: 24px;
   }
 }
+
+/* --- Ajustes visuales para mobile --- */
+@media (max-width: 768px) {
+  .hero,
+  .hero-area,
+  .hero-section {
+    filter: brightness(1.25) contrast(1.05);
+    background-blend-mode: lighten;
+  }
+
+  /* Si hay una capa oscura sobre la imagen (overlay), aclárala también */
+  .hero::before,
+  .hero-area::before,
+  .hero-section::before {
+    background: rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* Asegurar que el logo y texto sigan legibles */
+  .navbar,
+  .header,
+  .hero-content {
+    color: #eaf8ff;
+  }
+}
