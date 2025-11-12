@@ -107,7 +107,9 @@
     );
 
     if (heroGlowCard) {
-      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      const supportsPointerEvents = 'PointerEvent' in window;
+      const isCoarsePointer =
+        supportsPointerEvents && window.matchMedia('(pointer: coarse)').matches;
 
       const updateGlowVariables = (x, y, rect) => {
         // Clamp the pointer to the card bounds and convert to CSS-friendly units
@@ -120,6 +122,26 @@
         heroGlowCard.style.setProperty('--y', clampedY.toFixed(2));
         heroGlowCard.style.setProperty('--xp', xp.toFixed(2) + '%');
         heroGlowCard.style.setProperty('--yp', yp.toFixed(2) + '%');
+        return { clampedX, clampedY };
+      };
+
+      const isPointerNearEdge = (x, y, rect) => {
+        const minThreshold = 16;
+        const thresholdX = Math.max(minThreshold, rect.width * 0.08);
+        const thresholdY = Math.max(minThreshold, rect.height * 0.08);
+
+        return (
+          x <= thresholdX ||
+          y <= thresholdY ||
+          rect.width - x <= thresholdX ||
+          rect.height - y <= thresholdY
+        );
+      };
+
+      const updateEdgeGlowState = (x, y, rect) => {
+        const nearEdge = isPointerNearEdge(x, y, rect);
+        heroGlowCard.classList.toggle('is-glowing', nearEdge);
+        heroGlowCard.classList.toggle('edge-active', nearEdge);
       };
 
       const setGlowPosition = (event) => {
@@ -133,16 +155,17 @@
             ? event.clientY
             : rect.top + rect.height / 2;
 
-        updateGlowVariables(pointerX - rect.left, pointerY - rect.top, rect);
-      };
-
-      const activateGlow = (event) => {
-        heroGlowCard.classList.add('is-glowing');
-        setGlowPosition(event);
+        const { clampedX, clampedY } = updateGlowVariables(
+          pointerX - rect.left,
+          pointerY - rect.top,
+          rect
+        );
+        updateEdgeGlowState(clampedX, clampedY, rect);
       };
 
       const deactivateGlow = () => {
         heroGlowCard.classList.remove('is-glowing');
+        heroGlowCard.classList.remove('edge-active');
         heroGlowCard.style.setProperty('--x', '50');
         heroGlowCard.style.setProperty('--y', '50');
         heroGlowCard.style.setProperty('--xp', '50%');
@@ -156,13 +179,17 @@
 
       setInitialGlow();
 
-      if (!isCoarsePointer) {
-        heroGlowCard.addEventListener('pointerenter', activateGlow);
-        heroGlowCard.addEventListener('pointerdown', activateGlow);
+      if (supportsPointerEvents && !isCoarsePointer) {
+        heroGlowCard.addEventListener('pointerenter', setGlowPosition);
+        heroGlowCard.addEventListener('pointerdown', setGlowPosition);
         heroGlowCard.addEventListener('pointermove', setGlowPosition);
         heroGlowCard.addEventListener('pointerleave', deactivateGlow);
         heroGlowCard.addEventListener('pointerup', deactivateGlow);
         heroGlowCard.addEventListener('pointercancel', deactivateGlow);
+      } else if (!supportsPointerEvents) {
+        heroGlowCard.addEventListener('mouseenter', setGlowPosition);
+        heroGlowCard.addEventListener('mousemove', setGlowPosition);
+        heroGlowCard.addEventListener('mouseleave', deactivateGlow);
       } else {
         heroGlowCard.classList.add('is-glowing');
       }
