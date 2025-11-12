@@ -120,6 +120,26 @@
         heroGlowCard.style.setProperty('--y', clampedY.toFixed(2));
         heroGlowCard.style.setProperty('--xp', xp.toFixed(2) + '%');
         heroGlowCard.style.setProperty('--yp', yp.toFixed(2) + '%');
+        return { clampedX, clampedY };
+      };
+
+      const isPointerNearEdge = (x, y, rect) => {
+        const minThreshold = 28;
+        const thresholdX = Math.max(minThreshold, rect.width * 0.12);
+        const thresholdY = Math.max(minThreshold, rect.height * 0.12);
+
+        return (
+          x <= thresholdX ||
+          y <= thresholdY ||
+          rect.width - x <= thresholdX ||
+          rect.height - y <= thresholdY
+        );
+      };
+
+      const updateEdgeGlowState = (x, y, rect) => {
+        const nearEdge = isPointerNearEdge(x, y, rect);
+        heroGlowCard.classList.toggle('is-glowing', nearEdge);
+        heroGlowCard.classList.toggle('edge-active', nearEdge);
       };
 
       const setGlowPosition = (event) => {
@@ -133,16 +153,17 @@
             ? event.clientY
             : rect.top + rect.height / 2;
 
-        updateGlowVariables(pointerX - rect.left, pointerY - rect.top, rect);
-      };
-
-      const activateGlow = (event) => {
-        heroGlowCard.classList.add('is-glowing');
-        setGlowPosition(event);
+        const { clampedX, clampedY } = updateGlowVariables(
+          pointerX - rect.left,
+          pointerY - rect.top,
+          rect
+        );
+        updateEdgeGlowState(clampedX, clampedY, rect);
       };
 
       const deactivateGlow = () => {
         heroGlowCard.classList.remove('is-glowing');
+        heroGlowCard.classList.remove('edge-active');
         heroGlowCard.style.setProperty('--x', '50');
         heroGlowCard.style.setProperty('--y', '50');
         heroGlowCard.style.setProperty('--xp', '50%');
@@ -157,8 +178,8 @@
       setInitialGlow();
 
       if (!isCoarsePointer) {
-        heroGlowCard.addEventListener('pointerenter', activateGlow);
-        heroGlowCard.addEventListener('pointerdown', activateGlow);
+        heroGlowCard.addEventListener('pointerenter', setGlowPosition);
+        heroGlowCard.addEventListener('pointerdown', setGlowPosition);
         heroGlowCard.addEventListener('pointermove', setGlowPosition);
         heroGlowCard.addEventListener('pointerleave', deactivateGlow);
         heroGlowCard.addEventListener('pointerup', deactivateGlow);
