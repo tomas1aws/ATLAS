@@ -164,6 +164,14 @@ a:focus {
   backdrop-filter: brightness(0.85);
 }
 
+@media (max-width: 768px) {
+  .hero-section.hero--painting::before {
+    background: none;
+    backdrop-filter: none;
+    opacity: 1;
+  }
+}
+
 .hero-section.hero--painting .container,
 .hero-section.hero--painting .content,
 .hero-section.hero--painting .hero-content,
