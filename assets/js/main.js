@@ -107,7 +107,9 @@
     );
 
     if (heroGlowCard) {
-      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      const supportsPointerEvents = 'PointerEvent' in window;
+      const isCoarsePointer =
+        supportsPointerEvents && window.matchMedia('(pointer: coarse)').matches;
 
       const updateGlowVariables = (x, y, rect) => {
         // Clamp the pointer to the card bounds and convert to CSS-friendly units
@@ -184,6 +186,10 @@
         heroGlowCard.addEventListener('pointerleave', deactivateGlow);
         heroGlowCard.addEventListener('pointerup', deactivateGlow);
         heroGlowCard.addEventListener('pointercancel', deactivateGlow);
+      } else if (!supportsPointerEvents) {
+        heroGlowCard.addEventListener('mouseenter', setGlowPosition);
+        heroGlowCard.addEventListener('mousemove', setGlowPosition);
+        heroGlowCard.addEventListener('mouseleave', deactivateGlow);
       } else {
         heroGlowCard.classList.add('is-glowing');
       }
