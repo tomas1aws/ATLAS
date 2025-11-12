@@ -369,6 +369,13 @@
         align-items: center;
       }
 
+      .glow-card {
+        --glow-size: clamp(220px, 48vw, 340px);
+        --glow-opacity: 0;
+        --glow-x: 50%;
+        --glow-y: 50%;
+      }
+
       .glow-card::before,
       .card::before {
         content: "";
@@ -382,6 +389,35 @@
         z-index: -1;
       }
 
+      .glow-card::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 1;
+        background: radial-gradient(
+          var(--glow-size) var(--glow-size) at var(--glow-x) var(--glow-y),
+          rgba(56, 189, 248, 0.8) 0%,
+          rgba(56, 189, 248, 0.45) 22%,
+          rgba(56, 189, 248, 0.18) 38%,
+          rgba(56, 189, 248, 0.05) 52%,
+          transparent 70%
+        );
+        opacity: var(--glow-opacity);
+        transition: opacity 0.35s ease;
+        mask: radial-gradient(
+          farthest-side,
+          transparent calc(100% - 7px),
+          rgba(0, 0, 0, 0.98) calc(100% - 2px)
+        );
+        -webkit-mask: radial-gradient(
+          farthest-side,
+          transparent calc(100% - 7px),
+          rgba(0, 0, 0, 0.98) calc(100% - 2px)
+        );
+      }
+
       .glow-card:hover,
       .card:hover {
         transform: translateY(-12px);
@@ -389,6 +425,9 @@
           0 0 35px rgba(0, 255, 255, 0.5),
           0 20px 45px rgba(0, 255, 255, 0.22),
           0 32px 90px rgba(10, 10, 18, 0.85);
+      }
+
+      .card:hover {
         border-color: rgba(0, 255, 255, 0.35);
       }
 
@@ -905,5 +944,35 @@
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+      (function () {
+        const glowCards = document.querySelectorAll('.glow-card');
+
+        glowCards.forEach((card) => {
+          const updateGlow = (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            card.style.setProperty('--glow-x', `${xPercent}%`);
+            card.style.setProperty('--glow-y', `${yPercent}%`);
+            card.style.setProperty('--glow-opacity', '1');
+          };
+
+          card.addEventListener('pointermove', updateGlow);
+
+          card.addEventListener('pointerenter', (event) => {
+            updateGlow(event);
+            card.style.setProperty('--glow-opacity', '1');
+          });
+
+          card.addEventListener('pointerleave', () => {
+            card.style.setProperty('--glow-opacity', '0');
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
