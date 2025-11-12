@@ -126,9 +126,9 @@
       };
 
       const isPointerNearEdge = (x, y, rect) => {
-        const minThreshold = 16;
-        const thresholdX = Math.max(minThreshold, rect.width * 0.08);
-        const thresholdY = Math.max(minThreshold, rect.height * 0.08);
+        const minThreshold = 28;
+        const thresholdX = Math.max(minThreshold, rect.width * 0.12);
+        const thresholdY = Math.max(minThreshold, rect.height * 0.12);
 
         return (
           x <= thresholdX ||
@@ -179,7 +179,7 @@
 
       setInitialGlow();
 
-      if (supportsPointerEvents && !isCoarsePointer) {
+      if (!isCoarsePointer) {
         heroGlowCard.addEventListener('pointerenter', setGlowPosition);
         heroGlowCard.addEventListener('pointerdown', setGlowPosition);
         heroGlowCard.addEventListener('pointermove', setGlowPosition);
