@@ -101,26 +101,39 @@
 	// WOW active
     new WOW().init();
 
+    // Reactive glow spotlight for the hero glass card ------------------
     const heroGlowCard = document.querySelector(
       '.hero-section.hero-style-5 .hero-content-wrapper[data-glow]'
     );
 
     if (heroGlowCard) {
+      const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+      const updateGlowVariables = (x, y, rect) => {
+        // Clamp the pointer to the card bounds and convert to CSS-friendly units
+        const clampedX = Math.max(0, Math.min(rect.width, x));
+        const clampedY = Math.max(0, Math.min(rect.height, y));
+        const xp = (clampedX / rect.width) * 100;
+        const yp = (clampedY / rect.height) * 100;
+
+        heroGlowCard.style.setProperty('--x', clampedX.toFixed(2));
+        heroGlowCard.style.setProperty('--y', clampedY.toFixed(2));
+        heroGlowCard.style.setProperty('--xp', xp.toFixed(2) + '%');
+        heroGlowCard.style.setProperty('--yp', yp.toFixed(2) + '%');
+      };
+
       const setGlowPosition = (event) => {
         const rect = heroGlowCard.getBoundingClientRect();
         const pointerX =
-          typeof event.clientX === 'number'
+          event && typeof event.clientX === 'number'
             ? event.clientX
             : rect.left + rect.width / 2;
         const pointerY =
-          typeof event.clientY === 'number'
+          event && typeof event.clientY === 'number'
             ? event.clientY
             : rect.top + rect.height / 2;
-        const x = pointerX - rect.left;
-        const y = pointerY - rect.top;
 
-        heroGlowCard.style.setProperty('--x', x.toFixed(2));
-        heroGlowCard.style.setProperty('--y', y.toFixed(2));
+        updateGlowVariables(pointerX - rect.left, pointerY - rect.top, rect);
       };
 
       const activateGlow = (event) => {
@@ -130,16 +143,31 @@
 
       const deactivateGlow = () => {
         heroGlowCard.classList.remove('is-glowing');
-        heroGlowCard.style.removeProperty('--x');
-        heroGlowCard.style.removeProperty('--y');
+        heroGlowCard.style.setProperty('--x', '50');
+        heroGlowCard.style.setProperty('--y', '50');
+        heroGlowCard.style.setProperty('--xp', '50%');
+        heroGlowCard.style.setProperty('--yp', '50%');
       };
 
-      heroGlowCard.addEventListener('pointerenter', activateGlow);
-      heroGlowCard.addEventListener('pointerdown', activateGlow);
-      heroGlowCard.addEventListener('pointermove', setGlowPosition);
-      heroGlowCard.addEventListener('pointerleave', deactivateGlow);
-      heroGlowCard.addEventListener('pointerup', deactivateGlow);
-      heroGlowCard.addEventListener('pointercancel', deactivateGlow);
+      const setInitialGlow = () => {
+        const rect = heroGlowCard.getBoundingClientRect();
+        updateGlowVariables(rect.width / 2, rect.height / 2, rect);
+      };
+
+      setInitialGlow();
+
+      if (!isCoarsePointer) {
+        heroGlowCard.addEventListener('pointerenter', activateGlow);
+        heroGlowCard.addEventListener('pointerdown', activateGlow);
+        heroGlowCard.addEventListener('pointermove', setGlowPosition);
+        heroGlowCard.addEventListener('pointerleave', deactivateGlow);
+        heroGlowCard.addEventListener('pointerup', deactivateGlow);
+        heroGlowCard.addEventListener('pointercancel', deactivateGlow);
+      } else {
+        heroGlowCard.classList.add('is-glowing');
+      }
+
+      window.addEventListener('resize', setInitialGlow);
     }
 
 })();

@@ -83,6 +83,7 @@
         width: 100%;
       }
 
+      /* Reactive glassmorphism hero card ------------------------------- */
       .hero-section.hero-style-5 .hero-content-wrapper {
         display: flex;
         flex-direction: column;
@@ -104,11 +105,16 @@
         --soft-alpha: 0;
         --soft-visibility: 0;
         --glow-soft-size: clamp(180px, 42vw, 320px);
+        --glow-core-size: clamp(140px, 36vw, 260px);
+        --x: 50;
+        --y: 50;
+        --xp: 50%;
+        --yp: 50%;
         backdrop-filter: var(--card-blur);
         -webkit-backdrop-filter: var(--card-blur);
         background: radial-gradient(
-            var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px)
-              calc(var(--y, 0) * 1px),
+            var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 50) * 1px)
+              calc(var(--y, 50) * 1px),
             hsl(var(--spotlight-hue, 195) 100% 72% / var(--spotlight-alpha, 0)),
             transparent 68%
           ),
@@ -117,6 +123,7 @@
         transition: background 0.25s ease-out, box-shadow 0.35s ease-out;
       }
 
+      /* Soft glow halo controlled by pointer coordinates */
       .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before,
       .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
         content: "";
@@ -131,16 +138,32 @@
 
       .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before {
         background-image: radial-gradient(
-          var(--glow-soft-size) var(--glow-soft-size) at calc(var(--x, 0) * 1px)
-            calc(var(--y, 0) * 1px),
-          rgba(255, 255, 255, var(--soft-alpha, 0)),
-          transparent 70%
+          var(--glow-soft-size) var(--glow-soft-size) at var(--xp, 50%)
+            var(--yp, 50%),
+          rgba(255, 255, 255, calc(var(--soft-alpha, 0) * 0.65)),
+          rgba(0, 200, 255, calc(var(--soft-alpha, 0) * 0.45)) 55%,
+          transparent 85%
         );
         mix-blend-mode: screen;
+        filter: blur(10px);
       }
 
       .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
-        box-shadow: 0 0 clamp(90px, 26vw, 160px) rgba(0, 200, 255, 0.16);
+        background-image: radial-gradient(
+            var(--glow-core-size) var(--glow-core-size) at var(--xp, 50%)
+              var(--yp, 50%),
+            rgba(0, 200, 255, calc(var(--soft-alpha, 0) * 0.6)),
+            rgba(122, 90, 245, calc(var(--soft-alpha, 0) * 0.35)) 55%,
+            transparent 80%
+          ),
+          radial-gradient(
+            calc(var(--glow-core-size) * 1.6) calc(var(--glow-core-size) * 1.6)
+              at var(--xp, 50%) var(--yp, 50%),
+            rgba(0, 40, 80, calc(var(--soft-alpha, 0) * 0.35)),
+            transparent 70%
+          );
+        filter: blur(32px);
+        mix-blend-mode: screen;
       }
 
       .hero-section.hero-style-5 .hero-content-wrapper.is-glowing {
@@ -179,6 +202,30 @@
           box-shadow: 0 18px 45px rgba(5, 10, 20, 0.38);
           --spotlight-size: clamp(200px, 70vw, 320px);
           --glow-soft-size: clamp(160px, 62vw, 260px);
+          --glow-core-size: clamp(120px, 52vw, 220px);
+        }
+
+        .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before,
+        .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
+          opacity: 0.85;
+        }
+
+        .hero-section.hero-style-5 .hero-content-wrapper {
+          background: rgba(20, 24, 34, 0.58);
+        }
+      }
+
+      @media (pointer: coarse) {
+        .hero-section.hero-style-5 .hero-content-wrapper {
+          --spotlight-alpha: 0.16;
+          --soft-alpha: 0.12;
+          --soft-visibility: 1;
+          background: rgba(20, 24, 34, 0.52);
+        }
+
+        .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before,
+        .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::after {
+          background-position: 50% 50%;
         }
       }
 
