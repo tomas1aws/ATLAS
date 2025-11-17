@@ -197,4 +197,37 @@
       window.addEventListener('resize', setInitialGlow);
     }
 
+    // Contact form: send email via mailto ------------------------------
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
+        const nameField = document.getElementById('contact-name');
+        const emailField = document.getElementById('contact-email');
+        const subjectField = document.getElementById('contact-subject');
+        const messageField = document.getElementById('contact-message');
+
+        const name = nameField ? nameField.value.trim() : '';
+        const email = emailField ? emailField.value.trim() : '';
+        const subjectInput = subjectField ? subjectField.value.trim() : '';
+        const message = messageField ? messageField.value.trim() : '';
+
+        const subject = subjectInput || `Nuevo mensaje de ${name || 'Contacto'}`;
+        const body = `Nombre: ${name}\nEmail: ${email}\n\n${message}`;
+
+        const mailtoLink = `mailto:lab.atlas.n8n@gmail.com?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoLink;
+      });
+    }
+
 })();
