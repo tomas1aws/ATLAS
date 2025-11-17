@@ -254,7 +254,27 @@
           --spotlight-alpha: 0.16;
           --soft-alpha: 0.12;
           --soft-visibility: 1;
-          background: rgba(20, 24, 34, 0.52);
+          background: rgba(20, 24, 34, 0.48);
+        }
+
+        .hero-section-wrapper-5.hero--painting .hero-style-5::before {
+          filter: brightness(1.12) contrast(0.97);
+          opacity: 0.94;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .hero-section-wrapper-5.hero--painting .hero-style-5::after {
+          background: linear-gradient(
+              180deg,
+              rgba(12, 12, 12, 0.14) 0%,
+              rgba(12, 12, 12, 0.32) 100%
+            ),
+            radial-gradient(circle at 25% 20%, rgba(191, 140, 64, 0.08), transparent 55%),
+            radial-gradient(circle at 80% 30%, rgba(128, 34, 28, 0.07), transparent 60%),
+            radial-gradient(circle at 20% 82%, rgba(110, 46, 24, 0.06), transparent 55%);
+          z-index: 0;
+          pointer-events: none;
         }
 
         .hero-section.hero-style-5 .hero-content-wrapper[data-glow]::before,
