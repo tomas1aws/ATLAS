@@ -831,7 +831,7 @@
                   data-wow-delay=".2s"
                 />
                 <p class="hero-description wow fadeInUp" data-wow-delay=".4s">En un mundo sostenido por datos y sistemas, Atlas representa la resiliencia y el ingenio detrás de cada proceso automatizado.</p>
-                <a href="#0" class="button button-lg radius-50 wow fadeInUp" data-wow-delay=".6s">Ver Proyectos <i class="lni lni-chevron-right"></i> </a>
+                <a href="#projects" class="button button-lg radius-50 wow fadeInUp page-scroll" data-wow-delay=".6s">Ver Proyectos <i class="lni lni-chevron-right"></i> </a>
               </div>
             </div>
           </div>
@@ -945,11 +945,11 @@
           </p>
 
           <div class="contact-grid">
-            <form class="glass-form contact-form">
-              <input type="text" placeholder="Nombre" />
-              <input type="email" placeholder="Email" />
-              <input type="text" placeholder="Asunto" />
-              <textarea placeholder="Mensaje"></textarea>
+            <form id="contact-form" class="glass-form contact-form">
+              <input id="contact-name" name="name" type="text" placeholder="Nombre" required />
+              <input id="contact-email" name="email" type="email" placeholder="Email" required />
+              <input id="contact-subject" name="subject" type="text" placeholder="Asunto" />
+              <textarea id="contact-message" name="message" placeholder="Mensaje" required></textarea>
               <button type="submit">Enviar</button>
             </form>
           </div>
