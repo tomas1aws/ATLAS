@@ -374,38 +374,6 @@
         overflow: hidden;
         text-align: center;
         color: var(--text-primary);
-        background: linear-gradient(
-          180deg,
-          rgba(5, 5, 10, 0.92) 0%,
-          rgba(10, 10, 18, 0.98) 100%
-        );
-        isolation: isolate;
-      }
-
-      .stack-section::before,
-      .stack-section::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(90px);
-        z-index: -2;
-        opacity: 0.9;
-      }
-
-      .stack-section::before {
-        width: 420px;
-        height: 420px;
-        top: -140px;
-        left: -120px;
-        background: radial-gradient(circle, rgba(0, 255, 255, 0.25), transparent 70%);
-      }
-
-      .stack-section::after {
-        width: 520px;
-        height: 520px;
-        bottom: -220px;
-        right: -140px;
-        background: radial-gradient(circle, rgba(122, 90, 245, 0.22), transparent 70%);
       }
 
       .stack-container {
@@ -464,21 +432,22 @@
         gap: 14px;
         padding: 14px 18px;
         border-radius: 16px;
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+        border: 1px solid rgba(255, 255, 255, 0.06);
         box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
         transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease,
-          background 0.35s ease;
+          background 0.35s ease, filter 0.35s ease;
         position: relative;
         overflow: hidden;
         isolation: isolate;
       }
 
       .stack-item:hover {
-        transform: translateY(-6px) scale(1.01);
-        border-color: rgba(0, 255, 255, 0.5);
-        box-shadow: 0 25px 55px rgba(0, 255, 255, 0.2), 0 15px 30px rgba(0, 0, 0, 0.45);
-        background: linear-gradient(145deg, rgba(0, 255, 255, 0.08), rgba(122, 90, 245, 0.08));
+        transform: translateY(-5px) scale(1.005);
+        border-color: rgba(0, 255, 255, 0.38);
+        box-shadow: 0 26px 55px rgba(0, 255, 255, 0.18), 0 18px 38px rgba(0, 0, 0, 0.55);
+        background: linear-gradient(145deg, rgba(0, 255, 255, 0.12), rgba(122, 90, 245, 0.12));
+        filter: saturate(1.05);
       }
 
       .stack-item::after {
@@ -486,8 +455,8 @@
         position: absolute;
         inset: 0;
         border-radius: inherit;
-        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 45%),
-          radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.12), transparent 55%);
+        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 45%),
+          radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.18), transparent 55%);
         opacity: 0;
         transition: opacity 0.35s ease;
         z-index: 0;
@@ -508,14 +477,14 @@
       .stack-logo img {
         width: 44px;
         height: 44px;
-        opacity: 0.92;
+        opacity: 0.96;
         transition: opacity 0.3s ease, filter 0.3s ease;
       }
 
       .stack-item:hover .stack-logo svg,
       .stack-item:hover .stack-logo img {
         opacity: 1;
-        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.35));
+        filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.4));
       }
 
       .stack-label {
@@ -1027,7 +996,7 @@
     </section>
     <!-- ========================= hero-section-wrapper-6 end ========================= -->
 
-    <section id="stack" class="stack-section">
+    <section id="stack" class="stack-section dark-section">
       <div class="stack-container">
         <h2 class="section-title">Stack de Herramientas</h2>
         <p class="section-subtitle">
