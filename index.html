@@ -370,11 +370,15 @@
 
       .stack-section {
         position: relative;
-        padding: 100px 0;
+        padding: 110px 0 96px;
         overflow: hidden;
         text-align: center;
         color: var(--text-primary);
-        background: linear-gradient(180deg, #050505 0%, #0a0a12 100%);
+        background: linear-gradient(
+          180deg,
+          rgba(5, 5, 10, 0.92) 0%,
+          rgba(10, 10, 18, 0.98) 100%
+        );
         isolation: isolate;
       }
 
@@ -406,8 +410,8 @@
 
       .stack-container {
         width: 100%;
-        max-width: none;
-        padding-inline: clamp(1.5rem, 4vw, 3rem);
+        max-width: 1180px;
+        padding-inline: clamp(1.5rem, 5vw, 3.5rem);
         margin-inline: auto;
         display: flex;
         flex-direction: column;
@@ -417,10 +421,10 @@
       .stack-slider {
         position: relative;
         width: 100vw;
-        margin-top: 52px;
+        max-width: 100vw;
+        margin: 56px calc(50% - 50vw) 0;
+        padding-inline: clamp(1.5rem, 5vw, 3.5rem);
         overflow: hidden;
-        left: 50%;
-        transform: translateX(-50%);
       }
 
       .stack-slider::before,
@@ -436,12 +440,12 @@
 
       .stack-slider::before {
         left: 0;
-        background: linear-gradient(90deg, #050505, transparent);
+        background: linear-gradient(90deg, rgba(5, 5, 10, 0.95), transparent);
       }
 
       .stack-slider::after {
         right: 0;
-        background: linear-gradient(270deg, #0a0a12, transparent);
+        background: linear-gradient(270deg, rgba(10, 10, 18, 0.95), transparent);
       }
 
       .slide-track {
@@ -460,35 +464,58 @@
         gap: 14px;
         padding: 14px 18px;
         border-radius: 16px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease,
+          background 0.35s ease;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
       }
 
       .stack-item:hover {
-        transform: translateY(-4px);
-        border-color: rgba(0, 255, 255, 0.35);
-        box-shadow: 0 20px 40px rgba(0, 255, 255, 0.18);
+        transform: translateY(-6px) scale(1.01);
+        border-color: rgba(0, 255, 255, 0.5);
+        box-shadow: 0 25px 55px rgba(0, 255, 255, 0.2), 0 15px 30px rgba(0, 0, 0, 0.45);
+        background: linear-gradient(145deg, rgba(0, 255, 255, 0.08), rgba(122, 90, 245, 0.08));
+      }
+
+      .stack-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 45%),
+          radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.12), transparent 55%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        z-index: 0;
+      }
+
+      .stack-item:hover::after {
+        opacity: 1;
       }
 
       .stack-logo {
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 1;
       }
 
       .stack-logo svg,
       .stack-logo img {
         width: 44px;
         height: 44px;
-        opacity: 0.9;
-        transition: opacity 0.3s ease;
+        opacity: 0.92;
+        transition: opacity 0.3s ease, filter 0.3s ease;
       }
 
       .stack-item:hover .stack-logo svg,
       .stack-item:hover .stack-logo img {
         opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.35));
       }
 
       .stack-label {
@@ -1010,318 +1037,184 @@
         <div class="stack-slider">
           <div class="slide-track">
             <div class="stack-item">
-              <div class="stack-logo" aria-label="n8n">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff5b45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="16" cy="22" r="7" fill="rgba(255,91,69,0.15)" />
-                  <circle cx="48" cy="22" r="7" fill="rgba(255,91,69,0.1)" />
-                  <circle cx="32" cy="42" r="7" fill="rgba(255,91,69,0.1)" />
-                  <path d="M22 26l6 10M42 26l-6 10" />
-                  <path d="M16 28v6a6 6 0 006 6h4" />
-                  <path d="M48 28v6a6 6 0 01-6 6h-4" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/n8n.svg" alt="Logo de n8n" loading="lazy" />
               </div>
               <span class="stack-label">n8n</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="AWS">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff9900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 38l4-12 4 12 4-12 4 12" />
-                  <path d="M40 26v12l6-12v12" />
-                  <path d="M46 24c-3-2-7-1-7 3 0 6 9 4 9 9 0 4-5 4-8 2" />
-                  <path d="M18 44c8 6 20 6 28 0" fill="none" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/aws.svg" alt="Logo de AWS" loading="lazy" />
               </div>
               <span class="stack-label">AWS</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Google Cloud">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 40a10 10 0 119-16 10.5 10.5 0 0115 9 9 9 0 01-2 18H24a8 8 0 01-4-15" stroke="#4285f4" stroke-width="2.4" />
-                  <path d="M24 42h12" stroke="#34a853" stroke-width="2.4" />
-                  <path d="M28 26h10" stroke="#fbbc04" stroke-width="2.4" />
-                  <path d="M32 24l4 4-4 4-4-4z" fill="#ea4335" stroke="#ea4335" stroke-width="1.6" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/google-cloud.svg" alt="Logo de Google Cloud" loading="lazy" />
               </div>
               <span class="stack-label">Google Cloud</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Telegram API">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#2ca5e0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 30l40-14-9 32-11-8-9 6 3-12z" />
-                  <path d="M30 32l14-10" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/telegram.svg" alt="Logo de Telegram API" loading="lazy" />
               </div>
               <span class="stack-label">Telegram API</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Slack API">
-                <svg viewBox="0 0 64 64" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M24 30v-6a4 4 0 118 0v18" stroke="#36c5f0" />
-                  <path d="M28 32h16" stroke="#2eb67d" />
-                  <path d="M44 34v6a4 4 0 11-8 0V22" stroke="#e01e5a" />
-                  <path d="M40 32H24" stroke="#ecb22e" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/slack.svg" alt="Logo de Slack API" loading="lazy" />
               </div>
               <span class="stack-label">Slack API</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Gmail API">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="12" y="18" width="40" height="28" rx="3" fill="#ffffff08" stroke="#e94235" stroke-width="2.4" />
-                  <path d="M12 22l20 16 20-16" stroke="#e94235" stroke-width="2.8" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/gmail.svg" alt="Logo de Gmail API" loading="lazy" />
               </div>
               <span class="stack-label">Gmail API</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Stripe">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M42 24c-3-3-15-4-18 3-5 12 18 6 18 14 0 6-12 6-18 1" stroke="#635bff" stroke-width="3" />
-                  <path d="M24 20v24" stroke="#635bff" stroke-width="2.6" />
-                  <rect x="16" y="16" width="32" height="32" rx="8" stroke="#635bff" stroke-width="2.2" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/stripe.svg" alt="Logo de Stripe" loading="lazy" />
               </div>
               <span class="stack-label">Stripe</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="OpenAI">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#9ae6ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M30 10l14 8v12l-14 8-14-8V18z" />
-                  <path d="M16 18l14 8 14-8" />
-                  <path d="M16 30l14 8 14-8" />
-                  <path d="M30 18v26" />
-                  <path d="M44 22v18" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/openai.svg" alt="Logo de OpenAI" loading="lazy" />
               </div>
               <span class="stack-label">OpenAI</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="REST APIs">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 18h8l-8 28h-8z" stroke="#38bdf8" stroke-width="2.6" />
-                  <rect x="24" y="22" width="28" height="20" rx="6" stroke="#38bdf8" stroke-width="2.4" />
-                  <path d="M32 24v16M40 24v16M48 24v16" stroke="#38bdf8" stroke-width="2.4" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/rest.svg" alt="Ícono de APIs REST" loading="lazy" />
               </div>
               <span class="stack-label">REST APIs</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Webhooks">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#7c3aed" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 18a8 8 0 1010 12l2 8a8 8 0 106 13" />
-                  <circle cx="20" cy="20" r="5" fill="#7c3aed22" />
-                  <circle cx="42" cy="20" r="5" fill="#7c3aed18" />
-                  <circle cx="34" cy="46" r="6" fill="#7c3aed12" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/webhooks.svg" alt="Ícono de Webhooks" loading="lazy" />
               </div>
               <span class="stack-label">Webhooks</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="GitHub">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#cbd5e1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M32 12c-9.5 0-17 7.8-17 17.3 0 7.6 4.8 14.2 11.4 16.4v6.3l5.6-3 5.6 3v-6.3C44.2 43.4 49 36.8 49 29.3 49 19.8 41.5 12 32 12z" />
-                  <path d="M24 42c1.5.8 3.9 1.5 8 1.5s6.5-.7 8-1.5" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/github.svg" alt="Logo de GitHub" loading="lazy" />
               </div>
               <span class="stack-label">GitHub</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Postgres">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#50b5ff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="32" cy="16" rx="14" ry="6" fill="#50b5ff12" />
-                  <path d="M18 16v18c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5V16" />
-                  <path d="M18 32c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5" />
-                  <path d="M32 38v10" />
-                  <path d="M26 24c0 4 4 6 6 6s6-2 6-6" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/postgres.svg" alt="Logo de PostgreSQL" loading="lazy" />
               </div>
               <span class="stack-label">Postgres</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Google Sheets">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 12h18l12 12v28a4 4 0 01-4 4H22a4 4 0 01-4-4V16a4 4 0 014-4z" fill="#22c55e0f" />
-                  <path d="M40 12v12h12" />
-                  <path d="M24 28h22M24 36h22M24 44h22" />
-                  <path d="M32 28v16M40 28v16" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/google-sheets.svg" alt="Logo de Google Sheets" loading="lazy" />
               </div>
               <span class="stack-label">Google Sheets</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Notion API">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#f8fafc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="14" y="14" width="36" height="36" rx="6" fill="#ffffff05" />
-                  <path d="M22 46V22l20 22V22" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/notion.svg" alt="Logo de Notion" loading="lazy" />
               </div>
               <span class="stack-label">Notion API</span>
             </div>
             <div class="stack-item">
-              <div class="stack-logo" aria-label="Zapier">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff5a00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="32" cy="32" r="6" fill="#ff5a0012" />
-                  <path d="M32 14v10M32 40v10M14 32h10M40 32h10M22 22l6 6M36 36l6 6M42 22l-6 6M28 36l-6 6" />
-                </svg>
+              <div class="stack-logo">
+                <img src="assets/icons/stack/zapier.svg" alt="Logo de Zapier" loading="lazy" />
               </div>
               <span class="stack-label">Zapier</span>
             </div>
 
             <!-- duplicate sequence for seamless marquee -->
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="n8n">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff5b45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="16" cy="22" r="7" fill="rgba(255,91,69,0.15)" />
-                  <circle cx="48" cy="22" r="7" fill="rgba(255,91,69,0.1)" />
-                  <circle cx="32" cy="42" r="7" fill="rgba(255,91,69,0.1)" />
-                  <path d="M22 26l6 10M42 26l-6 10" />
-                  <path d="M16 28v6a6 6 0 006 6h4" />
-                  <path d="M48 28v6a6 6 0 01-6 6h-4" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/n8n.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">n8n</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="AWS">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff9900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 38l4-12 4 12 4-12 4 12" />
-                  <path d="M40 26v12l6-12v12" />
-                  <path d="M46 24c-3-2-7-1-7 3 0 6 9 4 9 9 0 4-5 4-8 2" />
-                  <path d="M18 44c8 6 20 6 28 0" fill="none" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/aws.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">AWS</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Google Cloud">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 40a10 10 0 119-16 10.5 10.5 0 0115 9 9 9 0 01-2 18H24a8 8 0 01-4-15" stroke="#4285f4" stroke-width="2.4" />
-                  <path d="M24 42h12" stroke="#34a853" stroke-width="2.4" />
-                  <path d="M28 26h10" stroke="#fbbc04" stroke-width="2.4" />
-                  <path d="M32 24l4 4-4 4-4-4z" fill="#ea4335" stroke="#ea4335" stroke-width="1.6" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/google-cloud.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Google Cloud</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Telegram API">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#2ca5e0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 30l40-14-9 32-11-8-9 6 3-12z" />
-                  <path d="M30 32l14-10" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/telegram.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Telegram API</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Slack API">
-                <svg viewBox="0 0 64 64" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M24 30v-6a4 4 0 118 0v18" stroke="#36c5f0" />
-                  <path d="M28 32h16" stroke="#2eb67d" />
-                  <path d="M44 34v6a4 4 0 11-8 0V22" stroke="#e01e5a" />
-                  <path d="M40 32H24" stroke="#ecb22e" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/slack.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Slack API</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Gmail API">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="12" y="18" width="40" height="28" rx="3" fill="#ffffff08" stroke="#e94235" stroke-width="2.4" />
-                  <path d="M12 22l20 16 20-16" stroke="#e94235" stroke-width="2.8" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/gmail.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Gmail API</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Stripe">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M42 24c-3-3-15-4-18 3-5 12 18 6 18 14 0 6-12 6-18 1" stroke="#635bff" stroke-width="3" />
-                  <path d="M24 20v24" stroke="#635bff" stroke-width="2.6" />
-                  <rect x="16" y="16" width="32" height="32" rx="8" stroke="#635bff" stroke-width="2.2" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/stripe.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Stripe</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="OpenAI">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#9ae6ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M30 10l14 8v12l-14 8-14-8V18z" />
-                  <path d="M16 18l14 8 14-8" />
-                  <path d="M16 30l14 8 14-8" />
-                  <path d="M30 18v26" />
-                  <path d="M44 22v18" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/openai.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">OpenAI</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="REST APIs">
-                <svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 18h8l-8 28h-8z" stroke="#38bdf8" stroke-width="2.6" />
-                  <rect x="24" y="22" width="28" height="20" rx="6" stroke="#38bdf8" stroke-width="2.4" />
-                  <path d="M32 24v16M40 24v16M48 24v16" stroke="#38bdf8" stroke-width="2.4" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/rest.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">REST APIs</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Webhooks">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#7c3aed" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 18a8 8 0 1010 12l2 8a8 8 0 106 13" />
-                  <circle cx="20" cy="20" r="5" fill="#7c3aed22" />
-                  <circle cx="42" cy="20" r="5" fill="#7c3aed18" />
-                  <circle cx="34" cy="46" r="6" fill="#7c3aed12" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/webhooks.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Webhooks</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="GitHub">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#cbd5e1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M32 12c-9.5 0-17 7.8-17 17.3 0 7.6 4.8 14.2 11.4 16.4v6.3l5.6-3 5.6 3v-6.3C44.2 43.4 49 36.8 49 29.3 49 19.8 41.5 12 32 12z" />
-                  <path d="M24 42c1.5.8 3.9 1.5 8 1.5s6.5-.7 8-1.5" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/github.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">GitHub</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Postgres">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#50b5ff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="32" cy="16" rx="14" ry="6" fill="#50b5ff12" />
-                  <path d="M18 16v18c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5V16" />
-                  <path d="M18 32c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5" />
-                  <path d="M32 38v10" />
-                  <path d="M26 24c0 4 4 6 6 6s6-2 6-6" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/postgres.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Postgres</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Google Sheets">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 12h18l12 12v28a4 4 0 01-4 4H22a4 4 0 01-4-4V16a4 4 0 014-4z" fill="#22c55e0f" />
-                  <path d="M40 12v12h12" />
-                  <path d="M24 28h22M24 36h22M24 44h22" />
-                  <path d="M32 28v16M40 28v16" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/google-sheets.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Google Sheets</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Notion API">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#f8fafc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="14" y="14" width="36" height="36" rx="6" fill="#ffffff05" />
-                  <path d="M22 46V22l20 22V22" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/notion.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Notion API</span>
             </div>
-            <div class="stack-item">
-              <div class="stack-logo" aria-label="Zapier">
-                <svg viewBox="0 0 64 64" fill="none" stroke="#ff5a00" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="32" cy="32" r="6" fill="#ff5a0012" />
-                  <path d="M32 14v10M32 40v10M14 32h10M40 32h10M22 22l6 6M36 36l6 6M42 22l-6 6M28 36l-6 6" />
-                </svg>
+            <div class="stack-item" aria-hidden="true">
+              <div class="stack-logo">
+                <img src="assets/icons/stack/zapier.svg" alt="" loading="lazy" />
               </div>
               <span class="stack-label">Zapier</span>
             </div>

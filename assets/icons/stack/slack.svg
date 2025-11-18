@@ -1,0 +1,7 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slack logo">
+  <rect width="64" height="64" rx="14" fill="#F5F0FF" opacity="0.12" />
+  <path d="M24 34a4 4 0 118 0v10a4 4 0 11-8 0z" fill="#E01E5A"/>
+  <path d="M30 24a4 4 0 018 0v6h-8z" fill="#36C5F0"/>
+  <path d="M32 30h10a4 4 0 110 8h-6z" fill="#2EB67D"/>
+  <path d="M22 32h6v10a4 4 0 11-6-4z" fill="#ECB22E"/>
+</svg>

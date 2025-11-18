@@ -1,0 +1,5 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenAI logo">
+  <rect width="64" height="64" rx="14" fill="#EAF8FF" opacity="0.12" />
+  <path d="M30 10l10 6a6 6 0 012.8 5.1v6.6l5.7 3.3a6 6 0 012.9 5.2v6.8a6 6 0 01-3 5.2l-10 6a6 6 0 01-6 0l-10-6A6 6 0 0112 43.8V37l-5.7-3.3A6 6 0 013.4 29v-6.6A6 6 0 016.4 17l10-6a6 6 0 016 0z" fill="none" stroke="#9AE6FF" stroke-width="2.6" stroke-linejoin="round" />
+  <path d="M23 18l8.5 5.1M23 46l8.5-5M41 18l-8.5 5.1M41 46l-8.5-5M15 32l17 .1M32 31.9l17 .1" fill="none" stroke="#9AE6FF" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

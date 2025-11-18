@@ -1,0 +1,7 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Webhooks icon">
+  <rect width="64" height="64" rx="14" fill="#F3E9FF" opacity="0.12" />
+  <path d="M26 18a8 8 0 108 12l3 8a8 8 0 106 12" fill="none" stroke="#7C3AED" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="22" cy="22" r="4" fill="#7C3AED" opacity="0.16" />
+  <circle cx="42" cy="22" r="4" fill="#7C3AED" opacity="0.16" />
+  <circle cx="34" cy="46" r="5" fill="#7C3AED" opacity="0.14" />
+</svg>
