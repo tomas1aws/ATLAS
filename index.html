@@ -368,6 +368,131 @@
         line-height: 1.7;
       }
 
+      .stack-section {
+        position: relative;
+        padding: 100px 0;
+        overflow: hidden;
+        text-align: center;
+        color: var(--text-primary);
+        background: linear-gradient(180deg, #050505 0%, #0a0a12 100%);
+        isolation: isolate;
+      }
+
+      .stack-section::before,
+      .stack-section::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        z-index: -2;
+        opacity: 0.9;
+      }
+
+      .stack-section::before {
+        width: 420px;
+        height: 420px;
+        top: -140px;
+        left: -120px;
+        background: radial-gradient(circle, rgba(0, 255, 255, 0.25), transparent 70%);
+      }
+
+      .stack-section::after {
+        width: 520px;
+        height: 520px;
+        bottom: -220px;
+        right: -140px;
+        background: radial-gradient(circle, rgba(122, 90, 245, 0.22), transparent 70%);
+      }
+
+      .stack-container {
+        width: min(1100px, 90%);
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stack-slider {
+        position: relative;
+        width: 100%;
+        margin-top: 52px;
+        overflow: hidden;
+      }
+
+      .stack-slider::before,
+      .stack-slider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 160px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .stack-slider::before {
+        left: 0;
+        background: linear-gradient(90deg, #050505, transparent);
+      }
+
+      .stack-slider::after {
+        right: 0;
+        background: linear-gradient(270deg, #0a0a12, transparent);
+      }
+
+      .slide-track {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        width: max-content;
+        animation: scroll-left 32s linear infinite;
+      }
+
+      .stack-logo {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stack-logo svg,
+      .stack-logo img {
+        width: 52px;
+        height: 52px;
+        opacity: 0.8;
+        color: #cbd5e1;
+        transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+      }
+
+      .stack-logo:hover svg,
+      .stack-logo:hover img {
+        opacity: 1;
+        color: #ffffff;
+        transform: translateY(-3px);
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .slide-track {
+          gap: 44px;
+          animation-duration: 28s;
+        }
+
+        .stack-logo svg,
+        .stack-logo img {
+          width: 46px;
+          height: 46px;
+        }
+      }
+
       .card-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -841,6 +966,257 @@
 
     </section>
     <!-- ========================= hero-section-wrapper-6 end ========================= -->
+
+    <section id="stack" class="stack-section">
+      <div class="stack-container">
+        <h2 class="section-title">Stack de Herramientas</h2>
+        <p class="section-subtitle">
+          Tecnologías y plataformas que utilizamos para crear soluciones digitales inteligentes.
+        </p>
+
+        <div class="stack-slider">
+          <div class="slide-track">
+            <div class="stack-logo" aria-label="n8n">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="16" cy="20" r="7" />
+                <circle cx="48" cy="20" r="7" />
+                <circle cx="32" cy="44" r="7" />
+                <path d="M22 24l6 12M42 24l-6 12" />
+                <path d="M16 27v6a6 6 0 006 6h4" />
+                <path d="M48 27v6a6 6 0 01-6 6h-4" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="AWS">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 40c3.5-10 8.5-16 14-16 4.5 0 7.5 5 10 16" />
+                <path d="M32 40c2.5-9 6.5-16 12-16 5 0 8 5 9 16" />
+                <path d="M14 44h36" />
+                <path d="M20 22l3-6 3 6M34 22l3-6 3 6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Google Cloud">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 38a10 10 0 119-16 11 11 0 0115 9 9 9 0 01-2 18H22a8 8 0 01-2-16" />
+                <path d="M22 42h12" />
+                <path d="M32 24l4 4-4 4-4-4z" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Telegram API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 32l36-14-8 32-10-8-8 6 2-11z" />
+                <path d="M32 32l10-8" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Slack API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 28v-6a4 4 0 018 0v16" />
+                <path d="M26 30h16" />
+                <path d="M42 36v6a4 4 0 01-8 0V26" />
+                <path d="M38 34H22" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Gmail API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="18" width="36" height="28" rx="3" />
+                <path d="M14 22l18 14 18-14" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Stripe">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="16" y="18" width="32" height="28" rx="6" />
+                <path d="M22 30h14c3 0 6 2 6 5s-3 5-6 5H28" />
+                <path d="M26 24v20" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="OpenAI">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 12l10 6v12l-10 6-10-6V18z" />
+                <path d="M22 18l10 6 10-6" />
+                <path d="M22 30l10 6 10-6" />
+                <path d="M22 18v12l10 6v10" />
+                <path d="M42 18v12l-10 6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="REST APIs">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="12" y="22" width="40" height="20" rx="6" />
+                <path d="M22 24v16" />
+                <path d="M30 24v16" />
+                <path d="M38 24v16" />
+                <path d="M46 24v16" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Webhooks">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="20" cy="24" r="7" />
+                <circle cx="44" cy="24" r="7" />
+                <circle cx="32" cy="42" r="8" />
+                <path d="M24 30l6 8 6-8M32 50v6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="GitHub">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 12c-9.5 0-17 7.7-17 17.2 0 7.6 4.8 14.1 11.4 16.4v6.4l5.6-3.1 5.6 3.1v-6.4c6.6-2.3 11.4-8.8 11.4-16.4C49 19.7 41.5 12 32 12z" />
+                <path d="M24 42c1.5.8 3.9 1.5 8 1.5s6.5-.7 8-1.5" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Postgres">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="32" cy="18" rx="14" ry="6" />
+                <path d="M18 18v16c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5V18" />
+                <path d="M18 34c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5" />
+                <path d="M32 40v10" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Google Sheets">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="18" y="14" width="28" height="36" rx="4" />
+                <path d="M22 22h20M22 30h20M22 38h20" />
+                <path d="M28 22v20M36 22v20" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Notion API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="16" width="36" height="32" rx="5" />
+                <path d="M22 44V24l20 20V24" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Zapier">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 14v12" />
+                <path d="M32 38v12" />
+                <path d="M14 32h12" />
+                <path d="M38 32h12" />
+                <path d="M22 22l6 6" />
+                <path d="M36 36l6 6" />
+                <path d="M42 22l-6 6" />
+                <path d="M28 36l-6 6" />
+                <circle cx="32" cy="32" r="5.5" />
+              </svg>
+            </div>
+
+            <div class="stack-logo" aria-label="n8n">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="16" cy="20" r="7" />
+                <circle cx="48" cy="20" r="7" />
+                <circle cx="32" cy="44" r="7" />
+                <path d="M22 24l6 12M42 24l-6 12" />
+                <path d="M16 27v6a6 6 0 006 6h4" />
+                <path d="M48 27v6a6 6 0 01-6 6h-4" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="AWS">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 40c3.5-10 8.5-16 14-16 4.5 0 7.5 5 10 16" />
+                <path d="M32 40c2.5-9 6.5-16 12-16 5 0 8 5 9 16" />
+                <path d="M14 44h36" />
+                <path d="M20 22l3-6 3 6M34 22l3-6 3 6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Google Cloud">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 38a10 10 0 119-16 11 11 0 0115 9 9 9 0 01-2 18H22a8 8 0 01-2-16" />
+                <path d="M22 42h12" />
+                <path d="M32 24l4 4-4 4-4-4z" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Telegram API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 32l36-14-8 32-10-8-8 6 2-11z" />
+                <path d="M32 32l10-8" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Slack API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 28v-6a4 4 0 018 0v16" />
+                <path d="M26 30h16" />
+                <path d="M42 36v6a4 4 0 01-8 0V26" />
+                <path d="M38 34H22" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Gmail API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="18" width="36" height="28" rx="3" />
+                <path d="M14 22l18 14 18-14" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Stripe">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="16" y="18" width="32" height="28" rx="6" />
+                <path d="M22 30h14c3 0 6 2 6 5s-3 5-6 5H28" />
+                <path d="M26 24v20" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="OpenAI">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 12l10 6v12l-10 6-10-6V18z" />
+                <path d="M22 18l10 6 10-6" />
+                <path d="M22 30l10 6 10-6" />
+                <path d="M22 18v12l10 6v10" />
+                <path d="M42 18v12l-10 6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="REST APIs">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="12" y="22" width="40" height="20" rx="6" />
+                <path d="M22 24v16" />
+                <path d="M30 24v16" />
+                <path d="M38 24v16" />
+                <path d="M46 24v16" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Webhooks">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="20" cy="24" r="7" />
+                <circle cx="44" cy="24" r="7" />
+                <circle cx="32" cy="42" r="8" />
+                <path d="M24 30l6 8 6-8M32 50v6" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="GitHub">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 12c-9.5 0-17 7.7-17 17.2 0 7.6 4.8 14.1 11.4 16.4v6.4l5.6-3.1 5.6 3.1v-6.4c6.6-2.3 11.4-8.8 11.4-16.4C49 19.7 41.5 12 32 12z" />
+                <path d="M24 42c1.5.8 3.9 1.5 8 1.5s6.5-.7 8-1.5" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Postgres">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="32" cy="18" rx="14" ry="6" />
+                <path d="M18 18v16c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5V18" />
+                <path d="M18 34c0 3.5 6.5 6.5 14 6.5s14-3 14-6.5" />
+                <path d="M32 40v10" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Google Sheets">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="18" y="14" width="28" height="36" rx="4" />
+                <path d="M22 22h20M22 30h20M22 38h20" />
+                <path d="M28 22v20M36 22v20" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Notion API">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="14" y="16" width="36" height="32" rx="5" />
+                <path d="M22 44V24l20 20V24" />
+              </svg>
+            </div>
+            <div class="stack-logo" aria-label="Zapier">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 14v12" />
+                <path d="M32 38v12" />
+                <path d="M14 32h12" />
+                <path d="M38 32h12" />
+                <path d="M22 22l6 6" />
+                <path d="M36 36l6 6" />
+                <path d="M42 22l-6 6" />
+                <path d="M28 36l-6 6" />
+                <circle cx="32" cy="32" r="5.5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <main>
       <!-- ========== AUTOMATIONS SECTION ========== -->
