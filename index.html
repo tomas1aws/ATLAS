@@ -26,6 +26,13 @@
         --text-primary: #f5f7ff;
         --text-secondary: #b7b9c9;
         --card-blur: blur(22px);
+        --nav-height: 92px;
+      }
+
+      @media (max-width: 991.98px) {
+        :root {
+          --nav-height: 78px;
+        }
       }
 
       body {
@@ -68,13 +75,14 @@
         align-items: center;
         justify-content: center;
         padding: clamp(4rem, 10vh, 6rem) clamp(1.5rem, 5vw, 4rem);
+        padding-top: calc(var(--nav-height) + clamp(3rem, 8vh, 5rem));
       }
 
       .hero-section.hero-style-5 .container {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: calc(100vh - 120px);
+        min-height: calc(100vh - var(--nav-height) - 40px);
         width: min(960px, 100%);
         margin-inline: auto;
       }
