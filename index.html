@@ -653,6 +653,90 @@
         margin-top: 1.5rem;
       }
 
+      #about-atlas {
+        width: 100%;
+        padding: 96px 0;
+        background: radial-gradient(circle at 20% -10%, rgba(0, 0, 0, 0.8), transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(10, 10, 18, 0.9), transparent 55%),
+          linear-gradient(180deg, #050505 0%, #0a0a12 100%);
+      }
+
+      #about-atlas .section-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      #about-atlas h2 {
+        font-size: clamp(2.25rem, 3vw, 2.8rem);
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 14px;
+      }
+
+      #about-atlas p.subtitle {
+        color: #9ca3af;
+        font-size: 1.05rem;
+        margin: 0 auto;
+        max-width: 640px;
+      }
+
+      .about-card {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: clamp(2.5rem, 5vw, 3.5rem);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(18px);
+        background: linear-gradient(135deg, rgba(0, 234, 255, 0.1), rgba(127, 92, 255, 0.1));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px -15px rgba(0, 255, 255, 0.4);
+      }
+
+      .about-card p {
+        color: #d4d4d8;
+        line-height: 1.75;
+      }
+
+      .about-card p + p {
+        margin-top: 1.2rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+
+      .reveal.fade-hero {
+        transform: translateY(26px);
+        transition-duration: 0.7s;
+      }
+
+      .reveal.fade-scale {
+        transform: translateY(20px) scale(0.98);
+        transition-duration: 0.65s;
+      }
+
+      .reveal.fade-zoom {
+        transform: translateY(18px) scale(0.97);
+        transition-duration: 0.7s;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .reveal-stagger .stagger-item {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .reveal-stagger.show .stagger-item.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       @media (min-width: 992px) {
         .contact-form {
           width: 70%;
@@ -831,7 +915,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
-              <div class="hero-content-wrapper text-center" data-glow>
+              <div class="hero-content-wrapper text-center reveal fade-hero" data-glow>
                 <img
                   src="assets/img/hero/hero-5/titlepng.png"
                   alt="ATLAS logo"
@@ -851,15 +935,38 @@
     <!-- ========================= hero-section-wrapper-6 end ========================= -->
 
     <main>
+      <section id="about-atlas" class="w-full py-24">
+        <div class="section-content">
+          <div class="section-header reveal">
+            <h2 class="text-4xl font-bold text-white mb-4">Lorem Ipsum Title</h2>
+            <p class="text-neutral-400 subtitle">Lorem ipsum subtitle placeholder.</p>
+          </div>
+
+          <div class="about-card reveal-stagger">
+            <p class="text-neutral-300 mb-6 stagger-item">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
+              aliqua. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget gravida.
+            </p>
+            <p class="text-neutral-300 mb-6 stagger-item">
+              Egestas diam in arcu cursus euismod quis viverra nibh. Vitae aliquet nec ullamcorper sit amet risus nullam eget felis
+              eget. Vitae semper quis lectus nulla at volutpat diam ut venenatis tellus.
+            </p>
+            <p class="text-neutral-300 stagger-item">
+              Ut porttitor leo a diam sollicitudin tempor id eu nisl. Aliquam eleifend mi in nulla posuere sollicitudin. Fames ac
+              turpis egestas integer eget aliquet nibh praesent tristique magna.
+            </p>
+          </div>
+        </div>
+      </section>
       <!-- ========== AUTOMATIONS SECTION ========== -->
       <section id="projects" class="dark-section">
-        <div class="section-content">
+        <div class="section-content reveal fade-scale">
           <h2 class="section-title">n8n Automations & Integrations</h2>
           <p class="section-subtitle">
             Explora algunos de mis flujos automatizados y proyectos de integración.
           </p>
 
-          <div class="card-grid">
+          <div class="card-grid reveal fade-scale">
             <div class="glow-card project-card">
               <div class="project-icon">
                 <img src="assets/icons/email-parser.svg" alt="Icono de Email Parser" />
@@ -946,14 +1053,14 @@
 
       <!-- ========== CONTACT SECTION ========== -->
       <section id="contact" class="dark-section contact">
-        <div class="section-content">
+        <div class="section-content reveal fade-zoom">
           <h2 class="section-title">Get in touch</h2>
           <p class="section-subtitle">
             Contactame para crear soluciones automatizadas y modernas.
           </p>
 
           <div class="contact-grid">
-            <form id="contact-form" class="glass-form contact-form">
+            <form id="contact-form" class="glass-form contact-form reveal fade-zoom">
               <input id="contact-name" name="name" type="text" placeholder="Nombre" required />
               <input id="contact-email" name="email" type="email" placeholder="Email" required />
               <input id="contact-subject" name="subject" type="text" placeholder="Asunto" />
@@ -966,7 +1073,7 @@
     </main>
 
     <!-- ========== FOOTER SECTION ========== -->
-    <footer class="dark-footer">
+    <footer class="dark-footer reveal">
       <div class="footer-content">
         <div class="brand">
           <h3>ATLAS</h3>
@@ -983,7 +1090,38 @@
     <!-- ========================= scroll-top start ========================= -->
     <a href="#" class="scroll-top"> <i class="lni lni-chevron-up"></i> </a>
     <!-- ========================= scroll-top end ========================= -->
-		
+
+    <script>
+      const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (entry.target.dataset.delay) {
+                entry.target.style.transitionDelay = entry.target.dataset.delay;
+              }
+
+              entry.target.classList.add('show');
+
+              if (entry.target.classList.contains('reveal-stagger')) {
+                const staggerItems = entry.target.querySelectorAll('.stagger-item');
+
+                staggerItems.forEach((item, index) => {
+                  item.style.transitionDelay = `${0.18 + index * 0.08}s`;
+                  item.classList.add('show');
+                });
+              }
+
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      revealElements.forEach((element) => revealObserver.observe(element));
+    </script>
 
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap-5.0.0-beta1.min.js"></script>
